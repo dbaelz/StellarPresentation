@@ -19,6 +19,8 @@ repositories {
 
 dependencies {
     implementation(compose.desktop.currentOs)
+
+    testImplementation(compose("org.jetbrains.compose.ui:ui-test-junit4"))
 }
 
 tasks.withType<KotlinCompile>() {
