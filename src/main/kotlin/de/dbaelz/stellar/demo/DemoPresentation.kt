@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -33,6 +35,7 @@ fun createDemoPresentation(): Presentation {
         ListSlide(
             title = "About Compose for Desktop",
             footer = { Footer("Compose for Desktop", 2, maxSlides) },
+            bulletPoint = Icons.Default.PlayArrow,
             texts = listOf(
                 "Declarative UIs for Desktop",
                 "Developed by JetBrains",

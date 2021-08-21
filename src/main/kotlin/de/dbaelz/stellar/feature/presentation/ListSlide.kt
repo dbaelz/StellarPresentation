@@ -9,6 +9,7 @@ import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
@@ -27,7 +28,8 @@ fun ListSlide(
     ) {
         Column(
             modifier = modifier.fillMaxSize(),
-            verticalArrangement = itemsArrangement) {
+            verticalArrangement = itemsArrangement
+        ) {
             items.forEach { composable ->
                 composable()
 
@@ -42,6 +44,7 @@ fun ListSlide(
     title: String,
     modifier: Modifier = Modifier,
     footer: @Composable () -> Unit = {},
+    bulletPoint: ImageVector = Icons.Default.KeyboardArrowRight,
     texts: List<String>
 ) {
     val items = mutableListOf<@Composable ColumnScope.() -> Unit>()
@@ -49,7 +52,7 @@ fun ListSlide(
         items.add {
             Row(Modifier.fillMaxWidth().wrapContentHeight()) {
                 Icon(
-                    imageVector = Icons.Default.KeyboardArrowRight,
+                    imageVector = bulletPoint,
                     contentDescription = null,
                     modifier = Modifier.wrapContentHeight().align(Alignment.CenterVertically)
                 )
