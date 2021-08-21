@@ -34,6 +34,16 @@ compose.desktop {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "Stellar Presentation"
             packageVersion = "1.0.0"
+
+            // TODO: Switch with Stellar Presentation icon
+            linux {
+                iconFile.set(project.file("icons/compose-logo.png"))
+            }
+
+            // TODO: Switch with Stellar Presentation icon
+            windows {
+                iconFile.set(project.file("icons/compose-logo.ico"))
+            }
         }
     }
 }

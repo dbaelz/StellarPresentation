@@ -12,6 +12,7 @@ import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.input.key.KeyEventType
 import androidx.compose.ui.input.key.key
 import androidx.compose.ui.input.key.type
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.*
 import de.dbaelz.stellar.feature.presentation.createDemoPresentation
@@ -30,6 +31,8 @@ fun main() = application {
         onCloseRequest = ::exitApplication,
         state = windowState,
         title = "Stellar Presentation",
+        // TODO: Switch with Stellar Presentation icon
+        icon = painterResource("images/compose-logo.png"),
         resizable = true,
         onKeyEvent = {
             when {
