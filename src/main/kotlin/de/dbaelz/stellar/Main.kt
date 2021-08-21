@@ -24,7 +24,7 @@ import de.dbaelz.stellar.theme.StellarPresentationTheme
 fun main() = application {
     val windowState = rememberWindowState(
         placement = WindowPlacement.Floating,
-        size = WindowSize(1024.dp, 768.dp)
+        size = WindowSize(1280.dp, 720.dp)
     )
 
     Window(
