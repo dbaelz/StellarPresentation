@@ -15,7 +15,7 @@ import androidx.compose.ui.input.key.type
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.*
-import de.dbaelz.stellar.feature.presentation.createDemoPresentation
+import de.dbaelz.stellar.demo.createDemoPresentation
 import de.dbaelz.stellar.screen.MainScreen
 import de.dbaelz.stellar.screen.PresentationScreen
 import de.dbaelz.stellar.theme.StellarPresentationTheme
