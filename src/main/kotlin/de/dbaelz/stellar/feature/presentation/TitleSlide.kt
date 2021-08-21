@@ -7,6 +7,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
@@ -57,8 +58,9 @@ fun TitleSlide(
         title = {
             Text(
                 text = title,
-                style = MaterialTheme.typography.h3,
+                style = MaterialTheme.typography.h2,
                 color = MaterialTheme.colors.primary,
+                fontWeight = FontWeight.Medium,
                 textAlign = TextAlign.Start,
                 modifier = Modifier.padding(start = 8.dp)
             )
@@ -73,7 +75,7 @@ fun TitleSlide(
 @Composable
 private fun DefaultDivider() {
     Divider(
-        color = MaterialTheme.colors.onBackground,
-        thickness = 3.dp
+        color = MaterialTheme.colors.onBackground.copy(alpha = 0.3f),
+        thickness = 2.dp
     )
 }

@@ -61,7 +61,7 @@ fun ListSlide(
 
                 Text(
                     text = it,
-                    style = MaterialTheme.typography.h4,
+                    style = MaterialTheme.typography.h3,
                     color = MaterialTheme.colors.onBackground,
                     textAlign = TextAlign.Start
                 )
