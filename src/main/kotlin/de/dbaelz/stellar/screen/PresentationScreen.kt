@@ -3,8 +3,6 @@ package de.dbaelz.stellar.screen
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -13,10 +11,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.input.key.*
+import de.dbaelz.stellar.feature.presentation.Presentation
 
 @ExperimentalComposeUiApi
 @Composable
-fun PresentationScreen(onBackNavigation: () -> Unit) {
+fun PresentationScreen(
+    presentation: Presentation,
+    onBackNavigation: () -> Unit
+) {
     val focusRequester = remember { FocusRequester() }
 
     LaunchedEffect(Unit) {
@@ -35,11 +37,19 @@ fun PresentationScreen(onBackNavigation: () -> Unit) {
                     onBackNavigation()
                     return@onPreviewKeyEvent true
                 }
+                Key.DirectionLeft -> {
+                    presentation.previousSlide()
+                    return@onPreviewKeyEvent true
+                }
+                Key.DirectionRight -> {
+                    presentation.nextSlide()
+                    return@onPreviewKeyEvent true
+                }
                 else -> false
             }
         }
         .focusable())
     {
-        Text(text = "Presentation Screen", style = MaterialTheme.typography.h1)
+        presentation.currentSlide()
     }
 }

@@ -14,6 +14,7 @@ import androidx.compose.ui.input.key.key
 import androidx.compose.ui.input.key.type
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.*
+import de.dbaelz.stellar.feature.presentation.createDemoPresentation
 import de.dbaelz.stellar.screen.MainScreen
 import de.dbaelz.stellar.screen.PresentationScreen
 import de.dbaelz.stellar.theme.StellarPresentationTheme
@@ -56,13 +57,15 @@ fun main() = application {
             Crossfade(
                 targetState = screenState,
                 animationSpec = tween(
-                    durationMillis = 300,
+                    durationMillis = 600,
                     easing = LinearOutSlowInEasing
                 )
-            ) {
-                when (screenState) {
+            ) { newState ->
+                when (newState) {
                     Screen.MAIN -> MainScreen { screenState = Screen.PRESENTATION }
-                    Screen.PRESENTATION -> PresentationScreen { screenState = Screen.MAIN }
+                    Screen.PRESENTATION -> PresentationScreen(createDemoPresentation()) {
+                        screenState = Screen.MAIN
+                    }
                 }
             }
         }
