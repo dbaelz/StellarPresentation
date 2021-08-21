@@ -1,7 +1,6 @@
 package de.dbaelz.stellar.feature.presentation
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -22,15 +21,7 @@ fun ListSlide(
     items: List<@Composable ColumnScope.() -> Unit>
 ) {
     TitleSlide(
-        title = {
-            Text(
-                text = title,
-                style = MaterialTheme.typography.h3,
-                color = MaterialTheme.colors.onBackground,
-                textAlign = TextAlign.Start,
-                modifier = Modifier.padding(start = 8.dp)
-            )
-        },
+        title = title,
         modifier = modifier,
         footer = footer
     ) {

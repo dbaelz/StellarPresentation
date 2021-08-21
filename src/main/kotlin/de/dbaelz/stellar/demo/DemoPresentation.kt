@@ -8,9 +8,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.painterResource
+import de.dbaelz.stellar.feature.presentation.CaptionSlide
 import de.dbaelz.stellar.feature.presentation.ListSlide
 import de.dbaelz.stellar.feature.presentation.Presentation
-import de.dbaelz.stellar.feature.presentation.TitleSlide
 
 // TODO: Move this into a Gradle module for better separation
 //  of Stellar and the actual presentations
@@ -19,7 +19,7 @@ fun createDemoPresentation(): Presentation {
     val slides = mutableListOf<@Composable () -> Unit>()
 
     slides.add {
-        TitleSlide(
+        CaptionSlide(
             title = "Compose for Desktop",
             subtitle = "Build beautiful desktop apps easily",
             backgroundImage = painterResource("images/compose-logo.png")

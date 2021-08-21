@@ -14,7 +14,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun TitleSlide(
+fun CaptionSlide(
     modifier: Modifier = Modifier,
     footer: @Composable () -> Unit = {},
     content: @Composable () -> Unit
@@ -32,14 +32,14 @@ fun TitleSlide(
 }
 
 @Composable
-fun TitleSlide(
+fun CaptionSlide(
     title: String,
     modifier: Modifier = Modifier,
     subtitle: String? = null,
     backgroundImage: Painter? = null,
     footer: @Composable () -> Unit = {}
 ) {
-    TitleSlide(modifier, footer) {
+    CaptionSlide(modifier, footer) {
         if (backgroundImage != null) Image(
             painter = backgroundImage,
             contentDescription = null,
