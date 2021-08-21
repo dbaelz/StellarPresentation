@@ -1,5 +1,12 @@
 package de.dbaelz.stellar
 
+import androidx.compose.animation.Crossfade
+import androidx.compose.animation.core.LinearOutSlowInEasing
+import androidx.compose.animation.core.tween
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.input.key.KeyEventType
@@ -7,6 +14,8 @@ import androidx.compose.ui.input.key.key
 import androidx.compose.ui.input.key.type
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.*
+import de.dbaelz.stellar.screen.MainScreen
+import de.dbaelz.stellar.screen.PresentationScreen
 import de.dbaelz.stellar.theme.StellarPresentationTheme
 
 @ExperimentalComposeUiApi
@@ -40,8 +49,27 @@ fun main() = application {
             }
         }
     ) {
-        StellarPresentationTheme {
+        var screenState by remember { mutableStateOf(Screen.MAIN) }
 
+
+        StellarPresentationTheme {
+            Crossfade(
+                targetState = screenState,
+                animationSpec = tween(
+                    durationMillis = 300,
+                    easing = LinearOutSlowInEasing
+                )
+            ) {
+                when (screenState) {
+                    Screen.MAIN -> MainScreen { screenState = Screen.PRESENTATION }
+                    Screen.PRESENTATION -> PresentationScreen { screenState = Screen.MAIN }
+                }
+            }
         }
     }
+}
+
+enum class Screen {
+    MAIN,
+    PRESENTATION,
 }
