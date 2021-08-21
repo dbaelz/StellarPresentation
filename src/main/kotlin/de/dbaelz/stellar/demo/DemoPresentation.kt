@@ -1,13 +1,15 @@
 package de.dbaelz.stellar.demo
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.MaterialTheme
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import de.dbaelz.stellar.feature.presentation.ListSlide
 import de.dbaelz.stellar.feature.presentation.Presentation
 import de.dbaelz.stellar.feature.presentation.TitleSlide
 
@@ -25,8 +27,16 @@ fun createDemoPresentation(): Presentation {
         )
     }
 
-    (1..10).forEach {
-        slides.add { DemoSlide(it) }
+    slides.add {
+        ListSlide(
+            title = "About Compose for Desktop",
+            footer = { Footer("Compose for Desktop", 2, 2) },
+            texts = listOf(
+                "Declarative UIs for Desktop",
+                "Developed by JetBrains",
+                "Origin: Jetpack Compose (Android)",
+            )
+        )
     }
 
     return Presentation(slides)
@@ -40,18 +50,5 @@ private fun Footer(title: String, slideNumber: Int, maxSlides: Int) {
     ) {
         Text(title)
         Text("$slideNumber/$maxSlides")
-    }
-}
-
-@Composable
-private fun DemoSlide(index: Int) {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = "Slide $index",
-            style = MaterialTheme.typography.h1
-        )
     }
 }
