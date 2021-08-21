@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.painterResource
 import de.dbaelz.stellar.feature.presentation.CaptionSlide
+import de.dbaelz.stellar.feature.presentation.ImageSlide
 import de.dbaelz.stellar.feature.presentation.ListSlide
 import de.dbaelz.stellar.feature.presentation.Presentation
 
@@ -16,6 +17,8 @@ import de.dbaelz.stellar.feature.presentation.Presentation
 //  of Stellar and the actual presentations
 @Composable
 fun createDemoPresentation(): Presentation {
+    val maxSlides = 3
+
     val slides = mutableListOf<@Composable () -> Unit>()
 
     slides.add {
@@ -29,12 +32,20 @@ fun createDemoPresentation(): Presentation {
     slides.add {
         ListSlide(
             title = "About Compose for Desktop",
-            footer = { Footer("Compose for Desktop", 2, 2) },
+            footer = { Footer("Compose for Desktop", 2, maxSlides) },
             texts = listOf(
                 "Declarative UIs for Desktop",
                 "Developed by JetBrains",
                 "Origin: Jetpack Compose (Android)",
             )
+        )
+    }
+
+    slides.add {
+        ImageSlide(
+            title = "About Compose for Desktop",
+            image = painterResource("images/compose-logo.png"),
+            footer = { Footer("Compose for Desktop", 3, maxSlides) },
         )
     }
 

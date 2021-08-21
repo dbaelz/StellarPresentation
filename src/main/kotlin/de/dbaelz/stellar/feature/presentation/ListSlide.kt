@@ -37,7 +37,6 @@ fun ListSlide(
     }
 }
 
-@JvmName("ListSlideTexts")
 @Composable
 fun ListSlide(
     title: String,
