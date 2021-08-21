@@ -15,39 +15,13 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun ListSlide(
-    title: @Composable () -> Unit,
-    modifier: Modifier = Modifier,
-    footer: @Composable () -> Unit = {},
-    content: @Composable () -> Unit
-) {
-    Box(
-        modifier = modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Column(Modifier.fillMaxSize()) {
-            title()
-
-            // TODO: Divider as Composable parameter?
-            Divider(color = MaterialTheme.colors.primary)
-
-            content()
-        }
-
-
-        Box(Modifier.fillMaxWidth().height(32.dp).align(Alignment.BottomCenter)) {
-            footer()
-        }
-    }
-}
-
-@Composable
-fun ListSlide(
     title: String,
     modifier: Modifier = Modifier,
     footer: @Composable () -> Unit = {},
+    itemsArrangement: Arrangement.Vertical = Arrangement.Top,
     items: List<@Composable ColumnScope.() -> Unit>
 ) {
-    ListSlide(
+    TitleSlide(
         title = {
             Text(
                 text = title,
@@ -60,11 +34,13 @@ fun ListSlide(
         modifier = modifier,
         footer = footer
     ) {
-        Column {
+        Column(
+            modifier = modifier.fillMaxSize(),
+            verticalArrangement = itemsArrangement) {
             items.forEach { composable ->
                 composable()
 
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(16.dp))
             }
         }
     }
@@ -104,6 +80,7 @@ fun ListSlide(
         title = title,
         modifier = modifier,
         footer = footer,
+        itemsArrangement = Arrangement.SpaceEvenly,
         items = items
     )
 }

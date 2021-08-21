@@ -3,12 +3,11 @@ package de.dbaelz.stellar.demo
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
 import de.dbaelz.stellar.feature.presentation.ListSlide
 import de.dbaelz.stellar.feature.presentation.Presentation
 import de.dbaelz.stellar.feature.presentation.TitleSlide
@@ -43,12 +42,12 @@ fun createDemoPresentation(): Presentation {
 }
 
 @Composable
-private fun Footer(title: String, slideNumber: Int, maxSlides: Int) {
+private fun Footer(textLeft: String, slideNumber: Int, maxSlides: Int) {
     Row(
-        Modifier.fillMaxSize().padding(8.dp),
+        Modifier.fillMaxSize().alpha(0.4f),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Text(title)
+        Text(textLeft)
         Text("$slideNumber/$maxSlides")
     }
 }
