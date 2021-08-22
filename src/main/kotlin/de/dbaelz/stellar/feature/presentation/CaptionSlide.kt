@@ -2,7 +2,9 @@ package de.dbaelz.stellar.feature.presentation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -46,22 +48,30 @@ fun CaptionSlide(
             modifier = Modifier.alpha(0.4f)
         )
 
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(
-                text = title,
-                style = MaterialTheme.typography.h1,
-                color = MaterialTheme.colors.onBackground,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center
-            )
-
-            if (subtitle != null) {
+        Surface(
+            shape = RoundedCornerShape(32.dp),
+            color = MaterialTheme.colors.primary.copy(alpha = 0.8f),
+            contentColor = MaterialTheme.colors.onPrimary,
+            modifier = Modifier.wrapContentSize()
+        ) {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.padding(32.dp)
+            ) {
                 Text(
-                    text = subtitle,
-                    style = MaterialTheme.typography.h3,
-                    color = MaterialTheme.colors.onBackground,
+                    text = title,
+                    style = MaterialTheme.typography.h1,
+                    fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center
                 )
+
+                if (subtitle != null) {
+                    Text(
+                        text = subtitle,
+                        style = MaterialTheme.typography.h3,
+                        textAlign = TextAlign.Center
+                    )
+                }
             }
         }
     }
