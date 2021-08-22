@@ -22,9 +22,10 @@ import de.dbaelz.stellar.theme.StellarPresentationTheme
 
 @ExperimentalComposeUiApi
 fun main() = application {
+    val defaultWindowSize = WindowSize(1280.dp, 720.dp)
     val windowState = rememberWindowState(
         placement = WindowPlacement.Floating,
-        size = WindowSize(1280.dp, 720.dp)
+        size = defaultWindowSize
     )
 
     Window(
@@ -44,9 +45,17 @@ fun main() = application {
                     // if previously it was Maximized
                     if (windowState.placement == WindowPlacement.Fullscreen) {
                         windowState.placement = WindowPlacement.Floating
+                        windowState.size = defaultWindowSize
                     } else {
                         windowState.placement = WindowPlacement.Fullscreen
                     }
+                    true
+                }
+                it.key == Key.F12 -> {
+                    if (it.type == KeyEventType.KeyUp) return@Window false
+                    windowState.placement = WindowPlacement.Floating
+                    windowState.size = defaultWindowSize
+
                     true
                 }
                 else -> false
