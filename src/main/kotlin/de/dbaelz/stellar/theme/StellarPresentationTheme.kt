@@ -1,6 +1,8 @@
 package de.dbaelz.stellar.theme
 
 import androidx.compose.desktop.DesktopMaterialTheme
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Typography
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
@@ -22,9 +24,13 @@ private val lightColors = lightColors(
 
 @Composable
 fun StellarPresentationTheme(
+    typography: Typography = MaterialTheme.typography,
     content: @Composable () -> Unit
 ) {
-    DesktopMaterialTheme(colors = lightColors) {
+    DesktopMaterialTheme(
+        colors = lightColors,
+        typography = typography
+    ) {
         content()
     }
 }
