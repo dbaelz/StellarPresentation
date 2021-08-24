@@ -1,6 +1,5 @@
 package de.dbaelz.stellar.feature.presentation
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
@@ -9,11 +8,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun CaptionSlide(
@@ -38,15 +36,11 @@ fun CaptionSlide(
     title: String,
     modifier: Modifier = Modifier,
     subtitle: String? = null,
-    backgroundImage: Painter? = null,
+    background: @Composable () -> Unit = {},
     footer: @Composable () -> Unit = {}
 ) {
     CaptionSlide(modifier, footer) {
-        if (backgroundImage != null) Image(
-            painter = backgroundImage,
-            contentDescription = null,
-            modifier = Modifier.alpha(0.4f)
-        )
+        background()
 
         Surface(
             shape = RoundedCornerShape(32.dp),
@@ -60,8 +54,8 @@ fun CaptionSlide(
             ) {
                 Text(
                     text = title,
-                    style = MaterialTheme.typography.h1,
-                    fontWeight = FontWeight.Bold,
+                    fontSize = 128.sp,
+                    fontWeight = FontWeight.Medium,
                     textAlign = TextAlign.Center
                 )
 

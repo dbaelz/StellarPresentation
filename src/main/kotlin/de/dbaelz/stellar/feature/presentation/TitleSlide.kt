@@ -9,7 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
@@ -34,17 +33,7 @@ fun TitleSlide(
             }
         }
 
-
-        Box(
-            Modifier
-                .align(Alignment.BottomCenter)
-                .padding(horizontal = 8.dp)
-                .fillMaxWidth()
-                .height(32.dp),
-            contentAlignment = Alignment.BottomCenter
-        ) {
-            footer()
-        }
+        Footer(Modifier.align(Alignment.BottomCenter), footer)
     }
 }
 
@@ -69,7 +58,6 @@ fun TitleSlide(
                 Text(
                     text = title,
                     style = MaterialTheme.typography.h2,
-                    fontWeight = FontWeight.Medium,
                     textAlign = TextAlign.Start,
                     modifier = Modifier.padding(16.dp)
                 )

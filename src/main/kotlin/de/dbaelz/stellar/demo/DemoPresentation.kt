@@ -1,13 +1,19 @@
 package de.dbaelz.stellar.demo
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.Divider
+import androidx.compose.material.LocalTextStyle
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import de.dbaelz.stellar.feature.presentation.CaptionSlide
 import de.dbaelz.stellar.feature.presentation.ImageSlide
 import de.dbaelz.stellar.feature.presentation.ListSlide
@@ -25,7 +31,13 @@ fun createDemoPresentation(): Presentation {
         CaptionSlide(
             title = "Compose for Desktop",
             subtitle = "Build beautiful desktop apps easily",
-            backgroundImage = painterResource("images/compose-logo.png")
+            background = {
+                Image(
+                    painter = painterResource("images/compose-logo.png"),
+                    contentDescription = null,
+                    modifier = Modifier.fillMaxSize().alpha(0.4f)
+                )
+            }
         )
     }
 
@@ -54,11 +66,32 @@ fun createDemoPresentation(): Presentation {
 
 @Composable
 private fun Footer(textLeft: String, slideNumber: Int, maxSlides: Int) {
-    Row(
-        Modifier.fillMaxSize().alpha(0.4f),
-        horizontalArrangement = Arrangement.SpaceBetween
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Bottom
     ) {
-        Text(textLeft)
-        Text("$slideNumber/$maxSlides")
+        Row(
+            modifier = Modifier
+                .wrapContentHeight()
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            CompositionLocalProvider(
+                LocalTextStyle provides TextStyle(
+                    color = MaterialTheme.colors.primary,
+                    fontSize = 16.sp
+                )
+            ) {
+                Text(textLeft)
+                Text("$slideNumber/$maxSlides")
+            }
+
+        }
+
+        Spacer(Modifier.height(4.dp))
+
+        Divider(thickness = 12.dp, color = MaterialTheme.colors.primary)
     }
+
 }
