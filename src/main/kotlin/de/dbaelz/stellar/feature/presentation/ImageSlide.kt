@@ -15,7 +15,7 @@ fun ImageSlide(
 ) {
     TitleSlide(
         title = title,
-        modifier = modifier,
+        modifier = Modifier,
         footer = footer
     ) {
         Image(

@@ -36,7 +36,7 @@ fun AboutSlide(
                 shape = RoundedCornerShape(8.dp),
                 color = MaterialTheme.colors.primary.copy(alpha = 0.8f),
                 contentColor = MaterialTheme.colors.onPrimary,
-                modifier = Modifier.wrapContentSize()
+                modifier = Modifier.fillMaxWidth(0.5f)
             ) {
                 Column(
                     modifier = Modifier.padding(horizontal = 32.dp, vertical = 16.dp),
@@ -71,7 +71,7 @@ fun AboutSlide(
                     shape = RoundedCornerShape(8.dp),
                     color = MaterialTheme.colors.secondary.copy(alpha = 0.8f),
                     contentColor = MaterialTheme.colors.onSecondary,
-                    modifier = Modifier.wrapContentSize()
+                    modifier = Modifier.fillMaxWidth(0.5f)
                 ) {
                     Box(Modifier.padding(32.dp)) {
 

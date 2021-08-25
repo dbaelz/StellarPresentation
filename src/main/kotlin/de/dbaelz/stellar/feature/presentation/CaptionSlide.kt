@@ -8,6 +8,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -34,19 +35,21 @@ fun CaptionSlide(
 @Composable
 fun CaptionSlide(
     title: String,
-    modifier: Modifier = Modifier,
     subtitle: String? = null,
+    backgroundColor: Color = MaterialTheme.colors.primary.copy(alpha = 0.8f),
+    contentColor: Color = MaterialTheme.colors.onPrimary,
+    contentModifier: Modifier = Modifier,
     background: @Composable () -> Unit = {},
     footer: @Composable () -> Unit = {}
 ) {
-    CaptionSlide(modifier, footer) {
+    CaptionSlide(footer = footer) {
         background()
 
         Surface(
             shape = RoundedCornerShape(32.dp),
-            color = MaterialTheme.colors.primary.copy(alpha = 0.8f),
-            contentColor = MaterialTheme.colors.onPrimary,
-            modifier = Modifier.wrapContentSize()
+            color = backgroundColor,
+            contentColor = contentColor,
+            modifier = contentModifier
         ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
