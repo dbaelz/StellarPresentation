@@ -40,6 +40,14 @@ fun PresentationScreen(
                     onBackNavigation()
                     return@onPreviewKeyEvent true
                 }
+                Key.MoveHome -> {
+                    presentation.firstSlide()
+                    return@onPreviewKeyEvent true
+                }
+                Key.MoveEnd -> {
+                    presentation.lastSlide()
+                    return@onPreviewKeyEvent true
+                }
                 Key.DirectionLeft -> {
                     presentation.previousSlide()
                     return@onPreviewKeyEvent true

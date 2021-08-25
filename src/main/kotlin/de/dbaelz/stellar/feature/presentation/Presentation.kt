@@ -16,4 +16,12 @@ class Presentation(private val slides: List<@Composable () -> Unit>) {
     fun previousSlide() {
         currentIndex = (currentIndex - 1).coerceAtLeast(0)
     }
+
+    fun firstSlide() {
+        currentIndex = 0
+    }
+
+    fun lastSlide() {
+        currentIndex = slides.size - 1
+    }
 }
