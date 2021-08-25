@@ -18,7 +18,7 @@ import androidx.compose.ui.window.*
 import de.dbaelz.stellar.demo.createDemoPresentation
 import de.dbaelz.stellar.screen.MainScreen
 import de.dbaelz.stellar.screen.PresentationScreen
-import de.dbaelz.stellar.theme.IndieFlowerTypography
+import de.dbaelz.stellar.theme.LatoTypography
 import de.dbaelz.stellar.theme.StellarPresentationTheme
 
 @ExperimentalComposeUiApi
@@ -66,7 +66,9 @@ fun main() = application {
         var screenState by remember { mutableStateOf(Screen.MAIN) }
 
 
-        StellarPresentationTheme() {
+        StellarPresentationTheme(
+            typography = LatoTypography
+        ) {
             Crossfade(
                 targetState = screenState,
                 animationSpec = tween(
