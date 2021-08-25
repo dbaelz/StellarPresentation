@@ -2,7 +2,10 @@ package de.dbaelz.stellar.feature.presentation
 
 import androidx.compose.runtime.*
 
-class Presentation(private val slides: List<@Composable () -> Unit>) {
+class Presentation(
+    val description: String = "",
+    private val slides: List<@Composable () -> Unit>
+) {
     private var currentIndex by mutableStateOf(0)
 
     val currentSlide by derivedStateOf {

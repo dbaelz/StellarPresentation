@@ -61,7 +61,7 @@ fun createDemoPresentation(): Presentation {
         )
     }
 
-    return Presentation(slides)
+    return Presentation("A simple demo presentation", slides)
 }
 
 @Composable
