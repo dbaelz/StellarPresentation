@@ -18,54 +18,54 @@ import de.dbaelz.stellar.feature.presentation.CaptionSlide
 import de.dbaelz.stellar.feature.presentation.ImageSlide
 import de.dbaelz.stellar.feature.presentation.ListSlide
 import de.dbaelz.stellar.feature.presentation.Presentation
+import de.dbaelz.stellar.theme.IndieFlowerTypography
 
 // TODO: Move this into a Gradle module for better separation
 //  of Stellar and the actual presentations
 @Composable
 fun createDemoPresentation(): Presentation {
-    val maxSlides = 3
-
-    val slides = mutableListOf<@Composable () -> Unit>()
-
-    slides.add {
-        CaptionSlide(
-            title = "Compose for Desktop",
-            subtitle = "Build beautiful desktop apps easily",
-            background = {
-                Image(
-                    painter = painterResource("images/compose-logo.png"),
-                    contentDescription = null,
-                    modifier = Modifier.fillMaxSize().alpha(0.4f)
+    return Presentation(
+        description = "A simple demo presentation",
+        typography = IndieFlowerTypography,
+        slides = listOf(
+            {
+                CaptionSlide(
+                    title = "Stellar Presentation",
+                    subtitle = "A presentation application build with Compose for Desktop",
+                    background = {
+                        Image(
+                            painter = painterResource("images/compose-logo.png"),
+                            contentDescription = null,
+                            modifier = Modifier.fillMaxSize().alpha(0.4f)
+                        )
+                    })
+            },
+            {
+                ListSlide(
+                    title = "About Stellar Presentation...",
+                    footer = { Footer(2) },
+                    items = listOf(
+                        "Demo app for Compose for Desktop",
+                        "Every slide is a Composable",
+                        "Provides common layouts for slides",
+                        "Support for presentation specific typography",
+                        "Navigation with the arrow keys",
+                    )
                 )
-            }
+            },
+            {
+                ImageSlide(
+                    title = "...and a slide with an image",
+                    image = painterResource("images/compose-logo.png"),
+                    footer = { Footer(3) },
+                )
+            },
         )
-    }
-
-    slides.add {
-        ListSlide(
-            title = "About Compose for Desktop",
-            footer = { Footer("Compose for Desktop", 2, maxSlides) },
-            items = listOf(
-                "Declarative UI for Desktop",
-                "Developed by JetBrains",
-                "Origin: Jetpack Compose (Android)",
-            )
-        )
-    }
-
-    slides.add {
-        ImageSlide(
-            title = "...and a slide with an image",
-            image = painterResource("images/compose-logo.png"),
-            footer = { Footer("Compose for Desktop", 3, maxSlides) },
-        )
-    }
-
-    return Presentation("A simple demo presentation", slides)
+    )
 }
 
 @Composable
-private fun Footer(textLeft: String, slideNumber: Int, maxSlides: Int) {
+private fun Footer(slideNumber: Int) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Bottom
@@ -83,10 +83,9 @@ private fun Footer(textLeft: String, slideNumber: Int, maxSlides: Int) {
                     fontSize = 16.sp
                 )
             ) {
-                Text(textLeft)
-                Text("$slideNumber/$maxSlides")
+                Text("Compose for Desktop")
+                Text(slideNumber.toString())
             }
-
         }
 
         Spacer(Modifier.height(4.dp))

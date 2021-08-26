@@ -64,10 +64,10 @@ fun main() = application {
         }
     ) {
         var screenState by remember { mutableStateOf(Screen.MAIN) }
-
+        var typography by remember { mutableStateOf(LatoTypography) }
 
         StellarPresentationTheme(
-            typography = LatoTypography
+            typography = typography
         ) {
             Crossfade(
                 targetState = screenState,
@@ -77,9 +77,19 @@ fun main() = application {
                 )
             ) { newState ->
                 when (newState) {
-                    Screen.MAIN -> MainScreen { screenState = Screen.PRESENTATION }
-                    Screen.PRESENTATION -> PresentationScreen(createDemoPresentation()) {
-                        screenState = Screen.MAIN
+                    Screen.MAIN -> {
+                        typography = LatoTypography
+                        MainScreen { screenState = Screen.PRESENTATION }
+                    }
+                    Screen.PRESENTATION -> {
+                        val presentation = createDemoPresentation()
+
+                        // Workaround because we can't use LocalTypography to change the typography
+                        // for components/screens of the app. Change it in theme, reset it for MAIN
+                        typography = presentation.typography
+                        PresentationScreen(presentation) {
+                            screenState = Screen.MAIN
+                        }
                     }
                 }
             }

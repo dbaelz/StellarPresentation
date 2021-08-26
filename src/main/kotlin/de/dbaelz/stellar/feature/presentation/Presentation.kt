@@ -1,9 +1,12 @@
 package de.dbaelz.stellar.feature.presentation
 
+import androidx.compose.material.Typography
 import androidx.compose.runtime.*
+import de.dbaelz.stellar.theme.LatoTypography
 
 class Presentation(
     val description: String = "",
+    val typography: Typography = LatoTypography,
     private val slides: List<@Composable () -> Unit>
 ) {
     private var currentIndex by mutableStateOf(0)
