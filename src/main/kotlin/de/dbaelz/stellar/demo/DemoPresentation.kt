@@ -25,7 +25,8 @@ import de.dbaelz.stellar.theme.IndieFlowerTypography
 @Composable
 fun createDemoPresentation(): Presentation {
     return Presentation(
-        description = "A simple demo presentation",
+        title = "Sample Presentation",
+        description = "A simple presentation that showcases Stellar Presentation",
         typography = IndieFlowerTypography,
         slides = listOf(
             {

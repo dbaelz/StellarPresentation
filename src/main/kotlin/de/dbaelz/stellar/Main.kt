@@ -16,6 +16,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.*
 import de.dbaelz.stellar.demo.createDemoPresentation
+import de.dbaelz.stellar.feature.presentation.Presentation
 import de.dbaelz.stellar.screen.MainScreen
 import de.dbaelz.stellar.screen.PresentationScreen
 import de.dbaelz.stellar.theme.LatoTypography
@@ -66,6 +67,11 @@ fun main() = application {
         var screenState by remember { mutableStateOf(Screen.MAIN) }
         var typography by remember { mutableStateOf(LatoTypography) }
 
+        val presentations = listOf(createDemoPresentation())
+
+        // TODO: Remove when navigation is improved (see other TODOs)
+        var currentPresentation: Presentation? by remember { mutableStateOf(null) }
+
         StellarPresentationTheme(
             typography = typography
         ) {
@@ -79,16 +85,19 @@ fun main() = application {
                 when (newState) {
                     Screen.MAIN -> {
                         typography = LatoTypography
-                        MainScreen { screenState = Screen.PRESENTATION }
+                        MainScreen(presentations) {
+                            currentPresentation = it
+                            screenState = Screen.PRESENTATION
+                        }
                     }
                     Screen.PRESENTATION -> {
-                        val presentation = createDemoPresentation()
-
-                        // Workaround because we can't use LocalTypography to change the typography
-                        // for components/screens of the app. Change it in theme, reset it for MAIN
-                        typography = presentation.typography
-                        PresentationScreen(presentation) {
-                            screenState = Screen.MAIN
+                        currentPresentation?.let {
+                            // Workaround because we can't use LocalTypography to change the typography
+                            // for components/screens of the app. Change it in theme, reset it for MAIN
+                            typography = it.typography
+                            PresentationScreen(it) {
+                                screenState = Screen.MAIN
+                            }
                         }
                     }
                 }
@@ -97,6 +106,7 @@ fun main() = application {
     }
 }
 
+// TODO: Switch to sealed class to add parameters?
 enum class Screen {
     MAIN,
     PRESENTATION,

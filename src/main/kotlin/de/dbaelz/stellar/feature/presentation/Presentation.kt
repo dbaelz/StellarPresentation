@@ -5,6 +5,7 @@ import androidx.compose.runtime.*
 import de.dbaelz.stellar.theme.LatoTypography
 
 class Presentation(
+    val title: String = "",
     val description: String = "",
     val typography: Typography = LatoTypography,
     private val slides: List<@Composable () -> Unit>
