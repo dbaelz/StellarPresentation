@@ -37,8 +37,8 @@ fun main() = application {
         icon = painterResource("images/compose-logo.png"),
         resizable = true,
         onKeyEvent = {
-            when {
-                it.key == Key.F11 -> {
+            when (it.key) {
+                Key.F11 -> {
                     // Ignore key up (release) and only react when the key is pressed
                     if (it.type == KeyEventType.KeyUp) return@Window false
 
@@ -52,7 +52,7 @@ fun main() = application {
                     }
                     true
                 }
-                it.key == Key.F12 -> {
+                Key.F12 -> {
                     if (it.type == KeyEventType.KeyUp) return@Window false
                     windowState.placement = WindowPlacement.Floating
                     windowState.size = defaultWindowSize
