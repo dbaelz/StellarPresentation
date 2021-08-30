@@ -6,7 +6,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.platform.Font
 
-private val IndieFlower = FontFamily(
+val IndieFlower = FontFamily(
     Font(
         resource = "fonts/indieflower/IndieFlower-Regular.ttf",
         weight = FontWeight.Normal,

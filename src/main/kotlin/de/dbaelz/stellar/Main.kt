@@ -70,7 +70,11 @@ fun main() = application {
         // Change it for the presentation and reset it for MAIN
         var typography by remember { mutableStateOf(LatoTypography) }
 
-        val presentations = listOf(createDemoPresentation())
+        val presentations = listOf(
+            createDemoPresentation(),
+            createDemoPresentation(),
+            createDemoPresentation()
+        )
 
         StellarPresentationTheme(
             typography = typography
