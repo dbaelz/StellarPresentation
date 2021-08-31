@@ -12,6 +12,7 @@ import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import de.dbaelz.stellar.feature.presentation.Presentation
@@ -55,7 +56,7 @@ fun MainScreen(
             Text(
                 text = "Presentations:",
                 style = MaterialTheme.typography.h2,
-                modifier = Modifier.padding(4.dp)
+                modifier = Modifier.padding(8.dp)
             )
 
             presentations.forEach { presentation ->
@@ -67,8 +68,9 @@ fun MainScreen(
                         style = MaterialTheme.typography.h5,
                         color = MaterialTheme.colors.onSecondary,
                         modifier = Modifier
+                            .clip(RoundedCornerShape(16.dp))
                             .background(MaterialTheme.colors.secondary)
-                            .padding(4.dp)
+                            .padding(8.dp)
                     )
                 }) {
                     Row(
