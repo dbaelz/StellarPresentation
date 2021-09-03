@@ -18,6 +18,7 @@ import androidx.compose.ui.window.*
 import de.dbaelz.stellar.demo.createDemoPresentation
 import de.dbaelz.stellar.screen.MainScreen
 import de.dbaelz.stellar.screen.PresentationScreen
+import de.dbaelz.stellar.screen.Screen
 import de.dbaelz.stellar.theme.LatoTypography
 import de.dbaelz.stellar.theme.StellarPresentationTheme
 
@@ -103,11 +104,4 @@ fun main() = application {
             }
         }
     }
-}
-
-sealed class Screen {
-    object Main : Screen()
-    class Presentation(
-        val presentation: de.dbaelz.stellar.feature.presentation.Presentation
-    ) : Screen()
 }
