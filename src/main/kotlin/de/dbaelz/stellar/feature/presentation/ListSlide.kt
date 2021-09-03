@@ -55,31 +55,7 @@ fun ListSlide(
     val composableItems = mutableListOf<@Composable ColumnScope.() -> Unit>()
     items.forEach { text ->
         composableItems.add {
-            Surface(
-                shape = RoundedCornerShape(16.dp),
-                color = itemsBackgroundColor,
-                contentColor = itemsContentColor,
-                modifier = Modifier.wrapContentSize()
-            ) {
-
-                Row(Modifier.wrapContentSize().padding(8.dp)) {
-                    if (bulletPoint != null) {
-                        Icon(
-                            imageVector = bulletPoint,
-                            contentDescription = null,
-                            tint = itemsContentColor,
-                            modifier = Modifier.size(40.dp).align(Alignment.CenterVertically)
-                        )
-                    }
-
-                    Text(
-                        text = text,
-                        style = MaterialTheme.typography.h3,
-                        textAlign = TextAlign.Start
-                    )
-                }
-
-            }
+            ListItem(text, bulletPoint, itemsBackgroundColor, itemsContentColor)
         }
     }
 
@@ -90,4 +66,37 @@ fun ListSlide(
         itemsArrangement = Arrangement.SpaceEvenly,
         items = composableItems
     )
+}
+
+@Composable
+fun ListItem(
+    text: String,
+    bulletPoint: ImageVector?,
+    itemsBackgroundColor: Color,
+    itemsContentColor: Color
+) {
+    Surface(
+        shape = RoundedCornerShape(16.dp),
+        color = itemsBackgroundColor,
+        contentColor = itemsContentColor,
+        modifier = Modifier.wrapContentSize()
+    ) {
+
+        Row(Modifier.wrapContentSize().padding(8.dp)) {
+            if (bulletPoint != null) {
+                Icon(
+                    imageVector = bulletPoint,
+                    contentDescription = null,
+                    tint = itemsContentColor,
+                    modifier = Modifier.size(40.dp).align(Alignment.CenterVertically)
+                )
+            }
+
+            Text(
+                text = text,
+                style = MaterialTheme.typography.h3,
+                textAlign = TextAlign.Start
+            )
+        }
+    }
 }
