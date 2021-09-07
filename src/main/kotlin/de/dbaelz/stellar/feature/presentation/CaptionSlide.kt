@@ -45,30 +45,41 @@ fun CaptionSlide(
     CaptionSlide(footer = footer) {
         background()
 
-        Surface(
-            shape = RoundedCornerShape(32.dp),
-            color = backgroundColor,
-            contentColor = contentColor,
-            modifier = contentModifier
+        CaptionContent(title, subtitle, backgroundColor, contentColor, contentModifier)
+    }
+}
+
+@Composable
+fun CaptionContent(
+    title: String,
+    subtitle: String? = null,
+    backgroundColor: Color = MaterialTheme.colors.primary.copy(alpha = 0.8f),
+    contentColor: Color = MaterialTheme.colors.onPrimary,
+    contentModifier: Modifier = Modifier,
+) {
+    Surface(
+        shape = RoundedCornerShape(32.dp),
+        color = backgroundColor,
+        contentColor = contentColor,
+        modifier = contentModifier
+    ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.padding(32.dp)
         ) {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.padding(32.dp)
-            ) {
+            Text(
+                text = title,
+                fontSize = 128.sp,
+                fontWeight = FontWeight.Medium,
+                textAlign = TextAlign.Center
+            )
+
+            if (subtitle != null) {
                 Text(
-                    text = title,
-                    fontSize = 128.sp,
-                    fontWeight = FontWeight.Medium,
+                    text = subtitle,
+                    style = MaterialTheme.typography.h3,
                     textAlign = TextAlign.Center
                 )
-
-                if (subtitle != null) {
-                    Text(
-                        text = subtitle,
-                        style = MaterialTheme.typography.h3,
-                        textAlign = TextAlign.Center
-                    )
-                }
             }
         }
     }
