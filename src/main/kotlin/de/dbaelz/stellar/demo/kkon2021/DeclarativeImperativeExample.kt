@@ -16,24 +16,14 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun DeclarativeImperativeExample(modifier: Modifier = Modifier) {
-    val counterModifier = Modifier.size(200.dp)
+    val counterModifier = Modifier.size(86.dp)
     Row(
         modifier = modifier
     ) {
-        BorderBox {
-            Counter(counterModifier, 0)
-        }
-
-        BorderBox {
-            Counter(counterModifier, 3)
-        }
-
-        BorderBox {
-            Counter(counterModifier, 8)
-        }
-
-        BorderBox {
-            Counter(counterModifier, 11)
+        (0..11).forEach {
+            BorderBox {
+                Counter(counterModifier, it)
+            }
         }
     }
 }
@@ -43,7 +33,7 @@ private fun BorderBox(content: @Composable () -> Unit) {
     Box(
         modifier = Modifier
             .padding(16.dp)
-            .border(2.dp, Color.LightGray, RoundedCornerShape(16.dp))
+            .border(2.dp, Color.Gray, RoundedCornerShape(16.dp))
             .padding(8.dp)
             .wrapContentSize()
     ) {
@@ -65,12 +55,15 @@ private fun Counter(modifier: Modifier, counter: Int) {
             text = counter.toString(),
             color = when (counter) {
                 0 -> Color.Black
-                in 1..5 -> Color.Green
+                in 1..5 -> Color.DarkGreen
                 else -> Color.Red
             },
             textAlign = TextAlign.Center,
-            fontSize = 64.sp
+            fontSize = 44.sp
         )
     }
 
 }
+
+private val Color.Companion. DarkGreen: Color
+    get() = Color(0xFF00CF00)

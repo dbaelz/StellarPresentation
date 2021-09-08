@@ -6,17 +6,19 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import de.dbaelz.stellar.feature.presentation.*
 import de.dbaelz.stellar.theme.LatoTypography
@@ -36,7 +38,6 @@ fun createComposeForDesktopPresentation(): Presentation {
 
             { DeclarativeImperativeCaption() },
             { DeclarativeImperativeStory() },
-            { DeclarativeImperativeImage() },
 
             { ImperativeFunctionCode() },
             { ImperativeDefinition() },
@@ -84,7 +85,7 @@ private fun About() = AboutSlide(
                 contentDescription = null,
                 contentScale = ContentScale.FillBounds,
                 modifier = Modifier
-                    .border(4.dp, Color.LightGray, RoundedCornerShape(16.dp))
+                    .border(4.dp, Color.Gray, RoundedCornerShape(16.dp))
                     .padding(2.dp)
                     .clip(RoundedCornerShape(16.dp))
             )
@@ -102,7 +103,7 @@ private fun About() = AboutSlide(
                     .height(200.dp)
                     .border(
                         4.dp,
-                        Color.LightGray,
+                        Color.Gray,
                         RoundedCornerShape(12.dp)
                     )
 
@@ -159,40 +160,72 @@ private fun DeclarativeImperativeCaption() = CaptionSlide(
         )
     }
 )
-
-
-// TODO: Better readable list/styling? (with a box?)
 @Composable
-private fun DeclarativeImperativeStory() = ListSlide(
-    title = "Beispiel: Eine Zahl soll formatiert angezeigt werden",
-    bulletPoint = null,
-    footer = { Footer() },
-    items = listOf(
-        "Wenn 0: Schrift in Schwarz, Rahmen in Schwarz",
-        "Wenn 1..5: Schrift in Grün, kein Rahmen",
-        "Wenn 6..10: Schrift in Rot, kein Rahmen",
-        "Wenn > 10: Schrift in Rot, Rahmen in Rot",
-    )
-)
-
-@Composable
-private fun DeclarativeImperativeImage() = TitleSlide(
-    title = "Beispiel: Eine Zahl soll formatiert angezeigt werden",
+private fun DeclarativeImperativeStory() = TitleSlide(
+    title = "Deklarative und Imperative UI",
     footer = { Footer() },
     content = {
-        Box(
-            modifier = Modifier.fillMaxWidth().fillMaxHeight(0.8f),
-            contentAlignment = Alignment.Center
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceEvenly,
+            modifier = Modifier.padding(32.dp).fillMaxSize()
         ) {
-            DeclarativeImperativeExample(Modifier.padding(8.dp))
+            Surface(
+                shape = RoundedCornerShape(32.dp),
+                color = MaterialTheme.colors.secondary.copy(alpha = 0.8f),
+                contentColor = MaterialTheme.colors.onSecondary,
+            ) {
+                Column(modifier = Modifier.padding(32.dp)) {
+                    Text(
+                        text = "Abhängig vom Zahlenwert soll sich die Darstellung ändern",
+                        style = MaterialTheme.typography.h3,
+                        textAlign = TextAlign.Start,
+                        modifier = Modifier.padding(16.dp)
+                    )
+
+                    Spacer(Modifier.height(32.dp))
+
+                    StoryText("0:", "Schrift in Schwarz, Rahmen in Schwarz")
+                    StoryText("1..5:", "Schrift in Grün, kein Rahmen")
+                    StoryText("6..10:", "Schrift in Rot, kein Rahmen")
+                    StoryText("> 10:", "Schrift in Rot, Rahmen in Rot")
+                }
+            }
+
+            Box(
+                modifier = Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.Center
+            ) {
+                DeclarativeImperativeExample(Modifier.padding(8.dp))
+            }
         }
     }
 )
 
+@Composable
+private fun StoryText(range: String, text: String) {
+    Row(modifier = Modifier.padding(start = 32.dp)) {
+        Text(
+            text = range,
+            style = MaterialTheme.typography.h4,
+            textAlign = TextAlign.Start,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.width(200.dp)
+        )
+
+        Text(
+            text = text,
+            style = MaterialTheme.typography.h4,
+            textAlign = TextAlign.Start
+        )
+    }
+
+}
+
 
 @Composable
 private fun ImperativeFunctionCode() = ImageSlide(
-    title = "Beispiel: Imperative UI",
+    title = "Imperative UI: Pseudocode",
     image = painterResource("$PRESENTATION_RESOURCE_DIR/imperative-function-code.png"),
     modifier = Modifier.fillMaxHeight(0.95f),
     footer = { Footer() },
@@ -200,7 +233,7 @@ private fun ImperativeFunctionCode() = ImageSlide(
 
 @Composable
 private fun ImperativeDefinition() = TitleSlide(
-    title = "Imperative UI",
+    title = "Imperative UI: Definition",
     footer = { Footer() },
     content = {
         Box(
@@ -209,7 +242,9 @@ private fun ImperativeDefinition() = TitleSlide(
         ) {
             CaptionContent(
                 title = "Fokus auf das WIE",
-                subtitle = "Wie muss sich die UI verändern"
+                subtitle = "Wie muss sich die UI verändern",
+                backgroundColor = MaterialTheme.colors.secondary,
+                contentColor = MaterialTheme.colors.onSecondary
             )
         }
     }
@@ -218,7 +253,7 @@ private fun ImperativeDefinition() = TitleSlide(
 
 @Composable
 private fun DeclarativeCode() = ImageSlide(
-    title = "Beispiel: Deklarative UI",
+    title = "Deklarative UI: Pseudocode",
     image = painterResource("$PRESENTATION_RESOURCE_DIR/declarative-code.png"),
     modifier = Modifier.fillMaxHeight(0.8f).padding(top = 100.dp),
     footer = { Footer() },
@@ -226,7 +261,7 @@ private fun DeclarativeCode() = ImageSlide(
 
 @Composable
 private fun DeclarativeDefinition() = TitleSlide(
-    title = "Deklarative UI",
+    title = "Deklarative UI: Definition",
     footer = { Footer() },
     content = {
         Box(
@@ -235,7 +270,9 @@ private fun DeclarativeDefinition() = TitleSlide(
         ) {
             CaptionContent(
                 title = "Fokus auf das WAS",
-                subtitle = "Was ist das gewünschte Aussehen der UI"
+                subtitle = "Was ist das gewünschte Aussehen der UI",
+                backgroundColor = MaterialTheme.colors.secondary,
+                contentColor = MaterialTheme.colors.onSecondary
             )
         }
     }
@@ -270,7 +307,7 @@ private fun Ecosystem() = ListSlide(
 // TODO: Expand and revise
 @Composable
 private fun Conclusion() = ListSlide(
-    title = "Ökosystem",
+    title = "Fazit",
     bulletPoint = null,
     footer = { Footer() },
     items = listOf(
@@ -281,7 +318,7 @@ private fun Conclusion() = ListSlide(
 // TODO: Expand and revise
 @Composable
 private fun Resources() = ListSlide(
-    title = "Ökosystem",
+    title = "Ressourcen",
     bulletPoint = null,
     footer = { Footer() },
     items = listOf(
