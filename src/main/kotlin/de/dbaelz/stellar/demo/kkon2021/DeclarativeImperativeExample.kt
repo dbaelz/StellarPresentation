@@ -65,5 +65,5 @@ private fun Counter(modifier: Modifier, counter: Int) {
 
 }
 
-private val Color.Companion. DarkGreen: Color
+private val Color.Companion.DarkGreen: Color
     get() = Color(0xFF00CF00)

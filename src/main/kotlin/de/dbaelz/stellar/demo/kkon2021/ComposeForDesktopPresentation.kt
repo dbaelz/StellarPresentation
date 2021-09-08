@@ -13,12 +13,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import de.dbaelz.stellar.feature.presentation.*
 import de.dbaelz.stellar.theme.LatoTypography
@@ -72,6 +73,7 @@ private fun Caption() {
         })
 }
 
+// TODO: Still ugly. Should be improved
 @Composable
 private fun About() = AboutSlide(
     name = "Daniel Bälz",
@@ -160,6 +162,7 @@ private fun DeclarativeImperativeCaption() = CaptionSlide(
         )
     }
 )
+
 @Composable
 private fun DeclarativeImperativeStory() = TitleSlide(
     title = "Deklarative und Imperative UI",
@@ -225,9 +228,12 @@ private fun StoryText(range: String, text: String) {
 
 @Composable
 private fun ImperativeFunctionCode() = ImageSlide(
-    title = "Imperative UI: Pseudocode",
+    title = "Imperative UI: Code",
     image = painterResource("$PRESENTATION_RESOURCE_DIR/imperative-function-code.png"),
-    modifier = Modifier.fillMaxHeight(0.95f),
+    modifier = Modifier
+        .border(4.dp, MaterialTheme.colors.primary, RoundedCornerShape(16.dp))
+        .padding(2.dp)
+        .clip(RoundedCornerShape(16.dp)),
     footer = { Footer() },
 )
 
@@ -253,9 +259,13 @@ private fun ImperativeDefinition() = TitleSlide(
 
 @Composable
 private fun DeclarativeCode() = ImageSlide(
-    title = "Deklarative UI: Pseudocode",
+    title = "Deklarative UI: Code",
     image = painterResource("$PRESENTATION_RESOURCE_DIR/declarative-code.png"),
-    modifier = Modifier.fillMaxHeight(0.8f).padding(top = 100.dp),
+    contentScale = ContentScale.Inside,
+    modifier = Modifier
+        .border(4.dp, MaterialTheme.colors.primary, RoundedCornerShape(16.dp))
+        .padding(2.dp)
+        .clip(RoundedCornerShape(16.dp)),
     footer = { Footer() },
 )
 
