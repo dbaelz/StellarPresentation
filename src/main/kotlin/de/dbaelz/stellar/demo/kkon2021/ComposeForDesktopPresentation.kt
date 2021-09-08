@@ -11,6 +11,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -53,7 +56,6 @@ fun createComposeForDesktopPresentation(): Presentation {
 }
 
 
-
 @Composable
 private fun Caption() {
     CaptionSlide(
@@ -69,58 +71,75 @@ private fun Caption() {
         })
 }
 
-// TODO: Rework. It's ugly
 @Composable
 private fun About() = AboutSlide(
     name = "Daniel Bälz",
     designation = "Android-Entwickler @ inovex",
     info = {
-        Row(
-            modifier = Modifier.fillMaxWidth(0.8f),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            val infoModifier = Modifier
-                .padding(16.dp)
-                .width(350.dp)
-                .height(200.dp)
-                .border(
-                    4.dp,
-                    MaterialTheme.colors.primaryVariant,
-                    RoundedCornerShape(12.dp)
-                )
+            Image(
+                painter = painterResource("$PRESENTATION_RESOURCE_DIR/avatar.png"),
+                contentDescription = null,
+                contentScale = ContentScale.FillBounds,
+                modifier = Modifier
+                    .border(4.dp, Color.LightGray, RoundedCornerShape(16.dp))
+                    .padding(2.dp)
+                    .clip(RoundedCornerShape(16.dp))
+            )
 
-            Column(
-                modifier = infoModifier,
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
+            Spacer(Modifier.height(24.dp))
+
+            Row(
+                modifier = Modifier.fillMaxWidth(0.8f),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
             ) {
-                Text(
-                    text = "Twitter/GitHub/Dev.to",
-                    style = MaterialTheme.typography.h5
-                )
+                val infoModifier = Modifier
+                    .padding(16.dp)
+                    .width(350.dp)
+                    .height(200.dp)
+                    .border(
+                        4.dp,
+                        Color.LightGray,
+                        RoundedCornerShape(12.dp)
+                    )
 
-                Spacer(Modifier.height(8.dp))
+                Column(
+                    modifier = infoModifier,
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        text = "Twitter/GitHub/Dev.to",
+                        style = MaterialTheme.typography.h5
+                    )
 
-                Text(
-                    text = "@dbaelz",
-                    style = MaterialTheme.typography.h4,
-                    color = MaterialTheme.colors.primary
-                )
+                    Spacer(Modifier.height(8.dp))
+
+                    Text(
+                        text = "@dbaelz",
+                        style = MaterialTheme.typography.h4,
+                        color = MaterialTheme.colors.primary
+                    )
+                }
+
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = infoModifier
+                ) {
+
+                    Text(
+                        text = "https://dbaelz.de",
+                        style = MaterialTheme.typography.h4,
+                        color = MaterialTheme.colors.primary,
+                        textAlign = TextAlign.Center,
+                    )
+                }
             }
 
-            Box(
-                contentAlignment = Alignment.Center,
-                modifier = infoModifier
-            ) {
 
-                Text(
-                    text = "https://dbaelz.de",
-                    style = MaterialTheme.typography.h4,
-                    color = MaterialTheme.colors.primary,
-                    textAlign = TextAlign.Center,
-                )
-            }
         }
     },
     statement = "Mag Kaffee aus Java, programmiert jedoch lieber in Kotlin.",
@@ -141,6 +160,8 @@ private fun DeclarativeImperativeCaption() = CaptionSlide(
     }
 )
 
+
+// TODO: Better readable list/styling? (with a box?)
 @Composable
 private fun DeclarativeImperativeStory() = ListSlide(
     title = "Beispiel: Eine Zahl soll formatiert angezeigt werden",
@@ -267,7 +288,6 @@ private fun Resources() = ListSlide(
         // TODO: Bullet Points
     )
 )
-
 
 
 @Composable
