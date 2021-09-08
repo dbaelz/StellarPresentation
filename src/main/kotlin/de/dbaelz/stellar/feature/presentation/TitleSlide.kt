@@ -22,7 +22,7 @@ fun TitleSlide(
 ) {
     Box(modifier = modifier.fillMaxSize()) {
         Column(Modifier.fillMaxSize()) {
-            Box(Modifier.padding(horizontal = 64.dp, vertical = 48.dp)) {
+            Box(Modifier.padding(horizontal = 64.dp, vertical = 64.dp)) {
                 title()
             }
 
