@@ -13,8 +13,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.clipToBounds
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -177,6 +175,7 @@ private fun DeclarativeImperativeStory() = TitleSlide(
                 shape = RoundedCornerShape(32.dp),
                 color = MaterialTheme.colors.secondary.copy(alpha = 0.8f),
                 contentColor = MaterialTheme.colors.onSecondary,
+                modifier = Modifier.border(2.dp, Color.Gray, RoundedCornerShape(32.dp))
             ) {
                 Column(modifier = Modifier.padding(32.dp)) {
                     Text(
@@ -238,24 +237,12 @@ private fun ImperativeFunctionCode() = ImageSlide(
 )
 
 @Composable
-private fun ImperativeDefinition() = TitleSlide(
+private fun ImperativeDefinition() = CustomTitleSlide(
     title = "Imperative UI: Definition",
-    footer = { Footer() },
-    content = {
-        Box(
-            modifier = Modifier.fillMaxWidth().fillMaxHeight(0.8f),
-            contentAlignment = Alignment.Center
-        ) {
-            CaptionContent(
-                title = "Fokus auf das WIE",
-                subtitle = "Wie muss sich die UI verändern",
-                backgroundColor = MaterialTheme.colors.secondary,
-                contentColor = MaterialTheme.colors.onSecondary
-            )
-        }
-    }
+    captionTitle = "Fokus auf das WIE",
+    captionSubtitle = "Wie muss sich die UI verändern",
+    footer = { Footer() }
 )
-
 
 @Composable
 private fun DeclarativeCode() = ImageSlide(
@@ -270,22 +257,11 @@ private fun DeclarativeCode() = ImageSlide(
 )
 
 @Composable
-private fun DeclarativeDefinition() = TitleSlide(
+private fun DeclarativeDefinition() = CustomTitleSlide(
     title = "Deklarative UI: Definition",
-    footer = { Footer() },
-    content = {
-        Box(
-            modifier = Modifier.fillMaxWidth().fillMaxHeight(0.8f),
-            contentAlignment = Alignment.Center
-        ) {
-            CaptionContent(
-                title = "Fokus auf das WAS",
-                subtitle = "Was ist das gewünschte Aussehen der UI",
-                backgroundColor = MaterialTheme.colors.secondary,
-                contentColor = MaterialTheme.colors.onSecondary
-            )
-        }
-    }
+    captionTitle = "Fokus auf das WAS",
+    captionSubtitle = "Was ist das gewünschte Aussehen der UI",
+    footer = { Footer() }
 )
 
 @Composable
