@@ -2,6 +2,7 @@ package de.dbaelz.stellar.feature.presentation
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.LocalTextStyle
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -9,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -39,13 +41,23 @@ fun CaptionSlide(
     backgroundColor: Color = MaterialTheme.colors.primary.copy(alpha = 0.8f),
     contentColor: Color = MaterialTheme.colors.onPrimary,
     contentModifier: Modifier = Modifier,
+    titleTextStyle: TextStyle = defaultCaptionTitleStyle,
+    subtitleTextStyle: TextStyle = defaultCaptionSubtitleStyle,
     background: @Composable () -> Unit = {},
     footer: @Composable () -> Unit = {}
 ) {
     CaptionSlide(footer = footer) {
         background()
 
-        CaptionContent(title, subtitle, backgroundColor, contentColor, contentModifier)
+        CaptionContent(
+            title = title,
+            subtitle = subtitle,
+            backgroundColor = backgroundColor,
+            contentColor = contentColor,
+            titleTextStyle = titleTextStyle,
+            subtitleTextStyle = subtitleTextStyle,
+            contentModifier = contentModifier
+        )
     }
 }
 
@@ -56,6 +68,8 @@ fun CaptionContent(
     backgroundColor: Color = MaterialTheme.colors.primary.copy(alpha = 0.8f),
     contentColor: Color = MaterialTheme.colors.onPrimary,
     contentModifier: Modifier = Modifier,
+    titleTextStyle: TextStyle = defaultCaptionTitleStyle,
+    subtitleTextStyle: TextStyle = defaultCaptionSubtitleStyle,
 ) {
     Surface(
         shape = RoundedCornerShape(32.dp),
@@ -69,18 +83,36 @@ fun CaptionContent(
         ) {
             Text(
                 text = title,
-                fontSize = 128.sp,
-                fontWeight = FontWeight.Medium,
-                textAlign = TextAlign.Center
+                style = titleTextStyle,
             )
 
             if (subtitle != null) {
                 Text(
                     text = subtitle,
-                    style = MaterialTheme.typography.h3,
-                    textAlign = TextAlign.Center
+                    style = subtitleTextStyle
                 )
             }
         }
     }
 }
+
+val defaultCaptionTitleStyle: TextStyle
+    @Composable
+    get() {
+        return LocalTextStyle.current.copy(
+            fontWeight = FontWeight.Medium,
+            textAlign = TextAlign.Center,
+            fontSize = 128.sp
+        )
+    }
+
+
+val defaultCaptionSubtitleStyle: TextStyle
+    @Composable
+    get() {
+        return LocalTextStyle.current.copy(
+            fontWeight = FontWeight.Medium,
+            textAlign = TextAlign.Center,
+            fontSize = MaterialTheme.typography.h3.fontSize
+        )
+    }
