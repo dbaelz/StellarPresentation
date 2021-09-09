@@ -35,6 +35,8 @@ fun createComposeForDesktopPresentation(): Presentation {
 
             { About() },
 
+
+
             { DeclarativeImperativeCaption() },
             { DeclarativeImperativeStory() },
 
@@ -44,10 +46,17 @@ fun createComposeForDesktopPresentation(): Presentation {
             { DeclarativeCode() },
             { DeclarativeDefinition() },
 
+            { Text("TODO: Warum nun deklarativ?") },
+
+            { ComposeForDesktopIntro() },
+            { ComposeForDesktopFacts()},
+            { DesktopAPIs() },
 
             { Demo() },
 
-            { Ecosystem() },
+            { Distribution() },
+
+            { Outlook() },
             { Conclusion() },
             { Resources() },
             { Questions() },
@@ -265,6 +274,42 @@ private fun DeclarativeDefinition() = CustomTitleSlide(
 )
 
 @Composable
+private fun ComposeForDesktopIntro() = ListSlide(
+    title = "Compose for Desktop",
+    footer = { Footer() },
+    items = listOf(
+        "Deklarative UI",
+        "Definiert im Code",
+        "Erstellt mittels Komposition"
+    )
+)
+
+@Composable
+private fun ComposeForDesktopFacts() = ListSlide(
+    title = "Compose for Desktop",
+    footer = { Footer() },
+    items = listOf(
+        "Ursprung: Jetpack Compose (Android)",
+        "Entwickelt von JetBrains",
+        "Aktuell in der Alpha"
+    )
+)
+
+@Composable
+private fun DesktopAPIs() = ListSlide(
+    title = "Desktop APIs",
+    footer = { Footer() },
+    items = listOf(
+        "Application und Window",
+        "Maus und Tastatur",
+        "Menubar",
+        "Scrollbars",
+        "Tooltip",
+        "...und viele mehr"
+    )
+)
+
+@Composable
 private fun Demo() = CaptionSlide(
     title = "Demo",
     //subtitle = "\"Talk is cheap. Show me the code.\" - Linus Torvalds",
@@ -279,10 +324,27 @@ private fun Demo() = CaptionSlide(
     }
 )
 
-// TODO: Expand and revise
+
+// TODO: Add infos
+//  Gradle Plugin
+//  Target Formats
+//  Java runtime included
 @Composable
-private fun Ecosystem() = ListSlide(
-    title = "Ökosystem",
+private fun Distribution() = ListSlide(
+    title = "Distribution",
+    bulletPoint = null,
+    footer = { Footer() },
+    items = listOf(
+        // TODO: Bullet Points
+    )
+)
+
+// TODO: Expand and revise.
+//  Ecosystem and libraries
+//  Multiplatform & Web
+@Composable
+private fun Outlook() = ListSlide(
+    title = "Ausblick",
     bulletPoint = null,
     footer = { Footer() },
     items = listOf(
