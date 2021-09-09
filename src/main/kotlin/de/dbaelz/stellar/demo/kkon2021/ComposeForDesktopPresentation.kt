@@ -16,9 +16,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import de.dbaelz.stellar.feature.presentation.*
 import de.dbaelz.stellar.theme.LatoTypography
 
@@ -31,26 +33,25 @@ fun createComposeForDesktopPresentation(): Presentation {
         description = "KKON 2021: Compose for Desktop",
         typography = LatoTypography,
         slides = listOf(
-            { Caption() },
+            { CustomCaptionWithAuthorSlide() },
 
-            { About() },
+            { ComposeForDesktopDefinition() },
 
 
-
-            { DeclarativeImperativeCaption() },
             { DeclarativeImperativeStory() },
-
             { ImperativeFunctionCode() },
             { ImperativeDefinition() },
-
             { DeclarativeCode() },
             { DeclarativeDefinition() },
+            { WhyDeclarative() },
+
 
             { Text("TODO: Warum nun deklarativ?") },
 
             { ComposeForDesktopIntro() },
-            { ComposeForDesktopFacts()},
+            { ComposeForDesktopFacts() },
             { DesktopAPIs() },
+
 
             { Demo() },
 
@@ -64,105 +65,19 @@ fun createComposeForDesktopPresentation(): Presentation {
     )
 }
 
-
 @Composable
-private fun Caption() {
-    CaptionSlide(
-        title = "Compose for Desktop",
-        //subtitle = "",
-        contentModifier = Modifier.fillMaxWidth(0.8f),
-        background = {
-            Image(
-                painter = painterResource("images/compose-logo.png"),
-                contentDescription = null,
-                modifier = Modifier.fillMaxSize().alpha(0.4f)
-            )
-        })
-}
-
-// TODO: Still ugly. Should be improved
-@Composable
-private fun About() = AboutSlide(
-    name = "Daniel Bälz",
-    designation = "Android-Entwickler @ inovex",
-    info = {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Image(
-                painter = painterResource("$PRESENTATION_RESOURCE_DIR/avatar.png"),
-                contentDescription = null,
-                contentScale = ContentScale.FillBounds,
-                modifier = Modifier
-                    .border(4.dp, Color.Gray, RoundedCornerShape(16.dp))
-                    .padding(2.dp)
-                    .clip(RoundedCornerShape(16.dp))
-            )
-
-            Spacer(Modifier.height(24.dp))
-
-            Row(
-                modifier = Modifier.fillMaxWidth(0.8f),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
-            ) {
-                val infoModifier = Modifier
-                    .padding(16.dp)
-                    .width(350.dp)
-                    .height(200.dp)
-                    .border(
-                        4.dp,
-                        Color.Gray,
-                        RoundedCornerShape(12.dp)
-                    )
-
-                Column(
-                    modifier = infoModifier,
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
-                ) {
-                    Text(
-                        text = "Twitter/GitHub/Dev.to",
-                        style = MaterialTheme.typography.h5
-                    )
-
-                    Spacer(Modifier.height(8.dp))
-
-                    Text(
-                        text = "@dbaelz",
-                        style = MaterialTheme.typography.h4,
-                        color = MaterialTheme.colors.primary
-                    )
-                }
-
-                Box(
-                    contentAlignment = Alignment.Center,
-                    modifier = infoModifier
-                ) {
-
-                    Text(
-                        text = "https://dbaelz.de",
-                        style = MaterialTheme.typography.h4,
-                        color = MaterialTheme.colors.primary,
-                        textAlign = TextAlign.Center,
-                    )
-                }
-            }
-
-
-        }
-    },
-    statement = "Mag Kaffee aus Java, programmiert jedoch lieber in Kotlin.",
-    footer = { Footer() },
-)
-
-@Composable
-private fun DeclarativeImperativeCaption() = CaptionSlide(
-    title = "Deklarative und Imperative UI",
-    contentModifier = Modifier.fillMaxWidth(0.6f),
+private fun ComposeForDesktopDefinition() = CaptionSlide(
+    title = "„Compose for Desktop bietet einen deklarativen und reaktiven Ansatz zur Erstellung " +
+            "von Benutzeroberflächen mit Kotlin”",
+    subtitle = "https://www.jetbrains.com/lp/compose/",
+    titleTextStyle = defaultCaptionTitleStyle.copy(fontSize = 70.sp, fontStyle = FontStyle.Italic),
+    subtitleTextStyle = defaultCaptionTitleStyle.copy(fontSize = 28.sp),
+    contentModifier = Modifier
+        .fillMaxWidth(0.75f)
+        .border(4.dp, Color.Gray, RoundedCornerShape(32.dp)),
     background = {
         Image(
-            painter = painterResource("$PRESENTATION_RESOURCE_DIR/helloworld-background.png"),
+            painter = painterResource("$PRESENTATION_RESOURCE_DIR/background.png"),
             contentDescription = null,
             contentScale = ContentScale.FillBounds,
             modifier = Modifier.fillMaxSize()
@@ -184,7 +99,7 @@ private fun DeclarativeImperativeStory() = TitleSlide(
                 shape = RoundedCornerShape(32.dp),
                 color = MaterialTheme.colors.secondary.copy(alpha = 0.8f),
                 contentColor = MaterialTheme.colors.onSecondary,
-                modifier = Modifier.border(2.dp, Color.Gray, RoundedCornerShape(32.dp))
+                modifier = Modifier.border(4.dp, Color.Gray, RoundedCornerShape(32.dp))
             ) {
                 Column(modifier = Modifier.padding(32.dp)) {
                     Text(
@@ -199,7 +114,7 @@ private fun DeclarativeImperativeStory() = TitleSlide(
                     StoryText("0:", "Schrift in Schwarz, Rahmen in Schwarz")
                     StoryText("1..5:", "Schrift in Grün, kein Rahmen")
                     StoryText("6..10:", "Schrift in Rot, kein Rahmen")
-                    StoryText("> 10:", "Schrift in Rot, Rahmen in Rot")
+                    StoryText(">= 11:", "Schrift in Rot, Rahmen in Rot")
                 }
             }
 
@@ -246,7 +161,7 @@ private fun ImperativeFunctionCode() = ImageSlide(
 )
 
 @Composable
-private fun ImperativeDefinition() = CustomTitleSlide(
+private fun ImperativeDefinition() = KeySentenceSlide(
     title = "Imperative UI: Definition",
     captionTitle = "Fokus auf das WIE",
     captionSubtitle = "Wie muss sich die UI verändern",
@@ -266,11 +181,20 @@ private fun DeclarativeCode() = ImageSlide(
 )
 
 @Composable
-private fun DeclarativeDefinition() = CustomTitleSlide(
+private fun DeclarativeDefinition() = KeySentenceSlide(
     title = "Deklarative UI: Definition",
     captionTitle = "Fokus auf das WAS",
     captionSubtitle = "Was ist das gewünschte Aussehen der UI",
     footer = { Footer() }
+)
+
+@Composable
+private fun WhyDeclarative() = ListSlide(
+    title = "Warum deklarative UI?", // TODO: Title
+    footer = { Footer() },
+    items = listOf(
+        "",
+    )
 )
 
 @Composable
@@ -305,15 +229,18 @@ private fun DesktopAPIs() = ListSlide(
         "Menubar",
         "Scrollbars",
         "Tooltip",
+        "Swing Interoperabilität",
         "...und viele mehr"
     )
 )
 
 @Composable
 private fun Demo() = CaptionSlide(
-    title = "Demo",
+    title = "Demo", // TODO: Change title when it's a in-presentation demo
     //subtitle = "\"Talk is cheap. Show me the code.\" - Linus Torvalds",
-    contentModifier = Modifier.fillMaxWidth(0.6f),
+    contentModifier = Modifier
+        .fillMaxWidth(0.6f)
+        .border(2.dp, Color.Gray, RoundedCornerShape(32.dp)),
     background = {
         Image(
             painter = painterResource("$PRESENTATION_RESOURCE_DIR/background.png"),
@@ -331,11 +258,17 @@ private fun Demo() = CaptionSlide(
 //  Java runtime included
 @Composable
 private fun Distribution() = ListSlide(
-    title = "Distribution",
-    bulletPoint = null,
+    title = "Compose for Desktop: Distribution",
     footer = { Footer() },
     items = listOf(
-        // TODO: Bullet Points
+        "Konfigurierbares Gradle Plugin",
+        "Java Runtime wird mit ausgeliefert",
+        "Formate:\n" +
+                "    • macOS: dmg & pkg\n" +
+                "    • Windows: exe & msi\n" +
+                "    • Linux: deb & rpm"
+
+
     )
 )
 
@@ -344,10 +277,10 @@ private fun Distribution() = ListSlide(
 //  Multiplatform & Web
 @Composable
 private fun Outlook() = ListSlide(
-    title = "Ausblick",
-    bulletPoint = null,
+    title = "Compose for Desktop: Ausblick",
     footer = { Footer() },
     items = listOf(
+        ""
         // TODO: Bullet Points
     )
 )
@@ -355,22 +288,26 @@ private fun Outlook() = ListSlide(
 // TODO: Expand and revise
 @Composable
 private fun Conclusion() = ListSlide(
-    title = "Fazit",
-    bulletPoint = null,
+    title = "Compose for Desktop: Fazit",
     footer = { Footer() },
     items = listOf(
-        // TODO: Bullet Points
+        "Bietet bereits viele Möglichkeiten",
+        "Hat noch Bugs und fehlende Feature",
+        "Ökosystem wächst langsam, auch durch Jetpack Compose",
+        "Mein Tipp: Einfach ausprobieren"
     )
 )
 
 // TODO: Expand and revise
 @Composable
 private fun Resources() = ListSlide(
-    title = "Ressourcen",
-    bulletPoint = null,
+    title = "Compose for Desktop: Ressourcen",
     footer = { Footer() },
     items = listOf(
-        // TODO: Bullet Points
+        "Projekt: https://www.jetbrains.com/lp/compose/",
+        "Tutorials: https://github.com/JetBrains/compose-jb/tree/master/tutorials",
+        "Jetpack Compose: https://developer.android.com/jetpack/compose",
+        "Kotlin Slack: https://surveys.jetbrains.com/s3/kotlin-slack-sign-up"
     )
 )
 
