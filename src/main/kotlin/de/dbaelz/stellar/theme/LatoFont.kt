@@ -6,7 +6,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.platform.Font
 
-private val Lato = FontFamily(
+val Lato = FontFamily(
     Font(
         resource = "fonts/lato/Lato-Black.ttf",
         weight = FontWeight.Black,
