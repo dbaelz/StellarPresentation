@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import de.dbaelz.stellar.feature.presentation.Presentation
 import de.dbaelz.stellar.theme.IndieFlower
@@ -35,7 +36,7 @@ fun MainScreen(
     ) {
         Image(
             // TODO: Switch with Stellar Presentation icon
-            painter = painterResource("images/compose-logo.png"),
+            painter = painterResource("images/compose-desktop-logo.png"),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(0.15f)
         )
@@ -54,9 +55,10 @@ fun MainScreen(
                 .border(2.dp, MaterialTheme.colors.primaryVariant, RoundedCornerShape(16.dp))
         ) {
             Text(
-                text = "Presentations:",
-                style = MaterialTheme.typography.h2,
-                modifier = Modifier.padding(8.dp)
+                text = "Presentations",
+                style = MaterialTheme.typography.h3,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(12.dp)
             )
 
             presentations.forEach { presentation ->

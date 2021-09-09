@@ -38,7 +38,7 @@ fun StellarPresentationWindow(
         state = windowState,
         title = "Stellar Presentation",
         // TODO: Switch with Stellar Presentation icon
-        icon = painterResource("images/compose-logo.png"),
+        icon = painterResource("images/compose-desktop-logo.png"),
         resizable = true,
         onKeyEvent = {
             when (it.key) {

@@ -37,12 +37,12 @@ compose.desktop {
 
             // TODO: Switch with Stellar Presentation icon
             linux {
-                iconFile.set(project.file("icons/compose-logo.png"))
+                iconFile.set(project.file("icons/compose-desktop-logo.png"))
             }
 
             // TODO: Switch with Stellar Presentation icon
             windows {
-                iconFile.set(project.file("icons/compose-logo.ico"))
+                iconFile.set(project.file("icons/compose-desktop-logo.ico"))
             }
         }
     }

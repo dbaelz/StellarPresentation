@@ -1,5 +1,6 @@
 package de.dbaelz.stellar.feature.presentation
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
@@ -55,7 +56,7 @@ fun ListSlide(
     val composableItems = mutableListOf<@Composable ColumnScope.() -> Unit>()
     items.forEach { text ->
         composableItems.add {
-            ListItem(text, bulletPoint, itemsBackgroundColor, itemsContentColor)
+            ListItem(text, bulletPoint, true, itemsBackgroundColor, itemsContentColor)
         }
     }
 
@@ -72,6 +73,7 @@ fun ListSlide(
 fun ListItem(
     text: String,
     bulletPoint: ImageVector?,
+    withBorder: Boolean = true,
     itemsBackgroundColor: Color,
     itemsContentColor: Color
 ) {
@@ -79,10 +81,16 @@ fun ListItem(
         shape = RoundedCornerShape(16.dp),
         color = itemsBackgroundColor,
         contentColor = itemsContentColor,
-        modifier = Modifier.wrapContentSize()
+        modifier = Modifier
+            .wrapContentSize()
+            .then(
+                if (withBorder)
+                    Modifier.border(4.dp, Color.Gray, RoundedCornerShape(16.dp))
+                else Modifier
+            )
     ) {
 
-        Row(Modifier.wrapContentSize().padding(8.dp)) {
+        Row(Modifier.wrapContentSize().padding(16.dp)) {
             if (bulletPoint != null) {
                 Icon(
                     imageVector = bulletPoint,

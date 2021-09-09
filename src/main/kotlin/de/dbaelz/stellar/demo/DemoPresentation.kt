@@ -1,7 +1,9 @@
 package de.dbaelz.stellar.demo
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
 import androidx.compose.material.LocalTextStyle
 import androidx.compose.material.MaterialTheme
@@ -10,6 +12,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
@@ -35,7 +39,7 @@ fun createDemoPresentation(): Presentation {
                     subtitle = "A presentation application build with Compose for Desktop",
                     background = {
                         Image(
-                            painter = painterResource("images/compose-logo.png"),
+                            painter = painterResource("images/compose-desktop-logo.png"),
                             contentDescription = null,
                             modifier = Modifier.fillMaxSize().alpha(0.4f)
                         )
@@ -57,7 +61,20 @@ fun createDemoPresentation(): Presentation {
             {
                 ImageSlide(
                     title = "...and a slide with an image",
+                    image = painterResource("images/compose-desktop-logo.png"),
+                    footer = { Footer(3) },
+                )
+            },
+            {
+                ImageSlide(
+                    title = "...and another slide with an image and modifier",
                     image = painterResource("images/compose-logo.png"),
+                    contentScale = ContentScale.Inside,
+                    modifier = Modifier
+                        .fillMaxHeight(0.8f)
+                        .border(4.dp, MaterialTheme.colors.primary, RoundedCornerShape(16.dp))
+                        .padding(2.dp)
+                        .clip(RoundedCornerShape(16.dp)),
                     footer = { Footer(3) },
                 )
             },
