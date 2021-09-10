@@ -1,4 +1,4 @@
-package de.dbaelz.stellar.demo.kkon2021
+package de.dbaelz.stellar.demo.kkon2021.example
 
 import androidx.compose.foundation.border
 import androidx.compose.material.Text

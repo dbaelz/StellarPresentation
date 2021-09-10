@@ -21,9 +21,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import de.dbaelz.stellar.feature.presentation.CaptionContent
 import de.dbaelz.stellar.feature.presentation.CaptionSlide
-import de.dbaelz.stellar.feature.presentation.defaultCaptionSubtitleStyle
 import de.dbaelz.stellar.theme.Caveat
 
 
@@ -70,13 +70,14 @@ private fun SpeakerInfo() {
             .clip(RoundedCornerShape(32.dp))
             .background(MaterialTheme.colors.secondaryVariant.copy(alpha = 0.85f))
     ) {
-        val rowModifier = Modifier.height(128.dp)
+        val size = 128.dp
+        val rowModifier = Modifier.height(size)
 
         Image(
             painter = painterResource("presentation/kkon2021/avatar.png"),
             contentDescription = null,
             contentScale = ContentScale.Fit,
-            modifier = rowModifier.size(128.dp)
+            modifier = rowModifier.size(size)
                 .clip(RoundedCornerShape(topStart = 32.dp, bottomStart = 32.dp))
         )
 
@@ -84,6 +85,7 @@ private fun SpeakerInfo() {
 
         CompositionLocalProvider(
             LocalTextStyle provides MaterialTheme.typography.h4.copy(
+                fontSize = 40.sp,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,
                 fontFamily = Caveat
@@ -125,7 +127,7 @@ private fun SpeakerInfo() {
                 Spacer(Modifier.height(8.dp))
 
                 Text(
-                    text = "@dbaelz"
+                    text = "@dbaelz",
                 )
             }
 
