@@ -1,6 +1,9 @@
 package de.dbaelz.stellar.demo.kkon2021.example
 
+import androidx.compose.foundation.ExperimentalDesktopApi
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.mouseClickable
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -9,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.awt.SwingPanel
+import androidx.compose.ui.input.pointer.*
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
@@ -81,3 +85,33 @@ fun SwingPanelExample() {
         Text("Counter: $counter")
     }
 }
+
+
+    @ExperimentalDesktopApi
+    @Composable
+    fun MouseClickableExample() {
+        var mouseButtonText by remember { mutableStateOf("") }
+        var keyboardModifierText by remember { mutableStateOf("") }
+        val text by derivedStateOf {
+            "Button: $mouseButtonText | Keyboard Modifier: $keyboardModifierText"
+        }
+
+        Text(
+            text = text,
+            style = MaterialTheme.typography.h4,
+            modifier = Modifier.mouseClickable {
+                mouseButtonText = when {
+                    buttons.isPrimaryPressed -> "Primary"
+                    buttons.isSecondaryPressed -> "Secondary"
+                    buttons.isTertiaryPressed -> "Tertiary"
+                    else -> ""
+                }
+                keyboardModifierText = when {
+                    keyboardModifiers.isShiftPressed -> "SHIFT"
+                    keyboardModifiers.isAltPressed -> "ALT"
+                    keyboardModifiers.isCtrlPressed -> "CTRL"
+                    else -> ""
+                }
+            }
+        )
+    }

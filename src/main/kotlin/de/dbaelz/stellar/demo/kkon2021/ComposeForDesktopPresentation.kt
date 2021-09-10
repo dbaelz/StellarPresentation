@@ -1,5 +1,6 @@
 package de.dbaelz.stellar.demo.kkon2021
 
+import androidx.compose.foundation.ExperimentalDesktopApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
@@ -30,6 +31,7 @@ internal const val PRESENTATION_RESOURCE_DIR = "presentation/kkon2021"
 private const val IMPERATIVE_UI_TITLE = "Imperative UI:"
 private const val DECLARATIVE_UI_TITLE = "Deklarative UI:"
 
+@ExperimentalDesktopApi
 @ExperimentalComposeUiApi
 @Composable
 fun createComposeForDesktopPresentation(): Presentation {
@@ -58,7 +60,7 @@ fun createComposeForDesktopPresentation(): Presentation {
             { ComposeForDesktopExampleCounterButton() },
             { DesktopAPIs() },
             { ComposeForDesktopExampleWindow() },
-            { /* TODO: Mouse and Keyboard */ },
+            { ComposeForDesktopExampleMouseKeyboard() },
             { ComposeForDesktopExampleInteropSwing() },
 
 
