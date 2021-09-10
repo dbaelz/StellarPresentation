@@ -26,6 +26,9 @@ import de.dbaelz.stellar.theme.LatoTypography
 
 private const val PRESENTATION_RESOURCE_DIR = "presentation/kkon2021"
 
+private const val IMPERATIVE_UI_TITLE = "Imperative UI:"
+private const val DECLARATIVE_UI_TITLE = "Deklarative UI:"
+
 @Composable
 fun createComposeForDesktopPresentation(): Presentation {
     return Presentation(
@@ -149,7 +152,7 @@ private fun StoryText(range: String, text: String) {
 
 @Composable
 private fun ImperativeFunctionCode() = ImageSlide(
-    title = "Imperative UI: Code",
+    title = "$IMPERATIVE_UI_TITLE Code",
     image = painterResource("$PRESENTATION_RESOURCE_DIR/imperative-function-code.png"),
     modifier = Modifier
         .border(4.dp, MaterialTheme.colors.primary, RoundedCornerShape(16.dp))
@@ -160,7 +163,7 @@ private fun ImperativeFunctionCode() = ImageSlide(
 
 @Composable
 private fun ImperativeDefinition() = KeySentenceSlide(
-    title = "Imperative UI: Definition",
+    title = "$IMPERATIVE_UI_TITLE Definition",
     captionTitle = "Fokus auf das WIE",
     captionSubtitle = "Wie muss sich die UI verändern",
     footer = { Footer() }
@@ -168,7 +171,7 @@ private fun ImperativeDefinition() = KeySentenceSlide(
 
 @Composable
 private fun DeclarativeCode() = ImageSlide(
-    title = "Deklarative UI: Code",
+    title = "$DECLARATIVE_UI_TITLE Code",
     image = painterResource("$PRESENTATION_RESOURCE_DIR/declarative-code.png"),
     contentScale = ContentScale.Inside,
     modifier = Modifier
@@ -180,7 +183,7 @@ private fun DeclarativeCode() = ImageSlide(
 
 @Composable
 private fun DeclarativeDefinition() = KeySentenceSlide(
-    title = "Deklarative UI: Definition",
+    title = "$DECLARATIVE_UI_TITLE Definition",
     captionTitle = "Fokus auf das WAS",
     captionSubtitle = "Was ist das gewünschte Aussehen der UI",
     footer = { Footer() }
@@ -188,21 +191,24 @@ private fun DeclarativeDefinition() = KeySentenceSlide(
 
 @Composable
 private fun WhyDeclarative() = ListSlide(
-    title = "Warum deklarative UI?", // TODO: Title
+    title = "$DECLARATIVE_UI_TITLE Vorteile",
     footer = { Footer() },
     items = listOf(
-        "",
+        "Weniger fehleranfällig und verständlicher",
+        "Vereinfachte Architektur mit unidirektionalem Datenfluss",
+        "Integration und Komposition von Elementen wird gefördert"
     )
 )
 
+// TODO: Something about state handling?
 @Composable
 private fun ComposeForDesktopIntro() = ListSlide(
     title = "Compose for Desktop",
     footer = { Footer() },
     items = listOf(
         "Deklarative UI",
-        "Definiert im Code",
-        "Erstellt mittels Komposition" // TODO: Improve text
+        "Definiert im Kotlin Code",
+        "Komposition anstatt Vererbung"
     )
 )
 
