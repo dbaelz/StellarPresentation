@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -185,6 +186,7 @@ private fun DeclarativeCode() = ImageSlide(
     image = painterResource("$PRESENTATION_RESOURCE_DIR/declarative-code.png"),
     contentScale = ContentScale.Inside,
     modifier = Modifier
+        .scale(1.2f)
         .border(4.dp, MaterialTheme.colors.primary, RoundedCornerShape(16.dp))
         .padding(2.dp)
         .clip(RoundedCornerShape(16.dp)),

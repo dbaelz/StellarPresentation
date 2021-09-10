@@ -1,16 +1,17 @@
 package de.dbaelz.stellar.demo.kkon2021
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
+import androidx.compose.foundation.*
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowRight
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -73,8 +74,22 @@ fun RowScope.ImageItem(
     contentScale: ContentScale = ContentScale.Fit,
     modifier: Modifier = Modifier,
 ) {
+    var zoomed by remember { mutableStateOf(false) }
+    val weight by derivedStateOf { if (zoomed) 10_000f else 0.5f }
+    val scale by derivedStateOf { if (zoomed) 1.4f else 1f }
+
     Box(
-        modifier = Modifier.weight(0.5f).fillMaxHeight(),
+        modifier = Modifier
+            .fillMaxHeight()
+            .weight(weight)
+            .scale(scale)
+            .verticalScroll(rememberScrollState(0))
+            .padding(bottom = 8.dp)
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = null,
+                onClick = { zoomed = !zoomed }
+            ),
         contentAlignment = Alignment.Center
     ) {
         Image(
@@ -92,6 +107,7 @@ fun RowScope.ImageItem(
 @Composable
 fun RowScope.ContentListItems(
     modifier: Modifier = Modifier,
+    weight: Float = 0.5f,
     bulletPoint: ImageVector? = Icons.Default.KeyboardArrowRight,
     itemsBackgroundColor: Color = MaterialTheme.colors.secondary.copy(alpha = 0.8f),
     itemsContentColor: Color = MaterialTheme.colors.onSecondary,
@@ -99,7 +115,7 @@ fun RowScope.ContentListItems(
     items: List<String>
 ) {
     Column(
-        modifier = modifier.fillMaxHeight().weight(0.5f),
+        modifier = modifier.fillMaxHeight().weight(weight),
         verticalArrangement = itemsArrangement
     ) {
         items.forEach { text ->

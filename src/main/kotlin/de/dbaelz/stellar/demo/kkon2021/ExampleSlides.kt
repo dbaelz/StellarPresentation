@@ -1,6 +1,8 @@
 package de.dbaelz.stellar.demo.kkon2021
 
+import androidx.compose.foundation.BoxWithTooltip
 import androidx.compose.foundation.ExperimentalDesktopApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -8,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -79,20 +82,31 @@ internal fun ComposeForDesktopExampleWindow() = LeftRightSlide(
 @ExperimentalDesktopApi
 @Composable
 internal fun ComposeForDesktopExampleMouseKeyboard() = LeftRightSlide(
-    title = "Maus und Keyboard",
+    title = "Maus und Tastatur",
     footer = { Footer() },
     leftContent = {
         Box(
             modifier = Modifier.weight(0.5f).fillMaxHeight(),
             contentAlignment = Alignment.Center
         ) {
-            Box(
-                Modifier
+            BoxWithTooltip(
+                modifier = Modifier
                     .fillMaxWidth(0.9f)
                     .padding(8.dp)
                     .border(4.dp, MaterialTheme.colors.primary, RoundedCornerShape(16.dp))
                     .padding(8.dp)
-                    .clip(RoundedCornerShape(16.dp))
+                    .clip(RoundedCornerShape(16.dp)),
+                tooltip = {
+                    Text(
+                        text = "Klick mich!",
+                        style = MaterialTheme.typography.h5,
+                        color = MaterialTheme.colors.onSecondary,
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(8.dp))
+                            .background(MaterialTheme.colors.secondary)
+                            .padding(8.dp)
+                    )
+                }
             ) {
                 MouseClickableExample()
             }

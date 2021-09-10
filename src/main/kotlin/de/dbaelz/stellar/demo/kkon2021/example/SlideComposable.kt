@@ -1,7 +1,6 @@
 package de.dbaelz.stellar.demo.kkon2021.example
 
 import androidx.compose.foundation.ExperimentalDesktopApi
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.mouseClickable
 import androidx.compose.material.Button
@@ -87,31 +86,31 @@ fun SwingPanelExample() {
 }
 
 
-    @ExperimentalDesktopApi
-    @Composable
-    fun MouseClickableExample() {
-        var mouseButtonText by remember { mutableStateOf("") }
-        var keyboardModifierText by remember { mutableStateOf("") }
-        val text by derivedStateOf {
-            "Button: $mouseButtonText | Keyboard Modifier: $keyboardModifierText"
-        }
-
-        Text(
-            text = text,
-            style = MaterialTheme.typography.h4,
-            modifier = Modifier.mouseClickable {
-                mouseButtonText = when {
-                    buttons.isPrimaryPressed -> "Primary"
-                    buttons.isSecondaryPressed -> "Secondary"
-                    buttons.isTertiaryPressed -> "Tertiary"
-                    else -> ""
-                }
-                keyboardModifierText = when {
-                    keyboardModifiers.isShiftPressed -> "SHIFT"
-                    keyboardModifiers.isAltPressed -> "ALT"
-                    keyboardModifiers.isCtrlPressed -> "CTRL"
-                    else -> ""
-                }
-            }
-        )
+@ExperimentalDesktopApi
+@Composable
+fun MouseClickableExample() {
+    var mouseButtonText by remember { mutableStateOf("") }
+    var keyboardModifierText by remember { mutableStateOf("") }
+    val text by derivedStateOf {
+        "Button: $mouseButtonText \nKeyboard Modifier: $keyboardModifierText"
     }
+
+    Text(
+        text = text,
+        style = MaterialTheme.typography.h4,
+        modifier = Modifier.mouseClickable {
+            mouseButtonText = when {
+                buttons.isPrimaryPressed -> "Primary"
+                buttons.isSecondaryPressed -> "Secondary"
+                buttons.isTertiaryPressed -> "Tertiary"
+                else -> ""
+            }
+            keyboardModifierText = when {
+                keyboardModifiers.isShiftPressed -> "SHIFT"
+                keyboardModifiers.isAltPressed -> "ALT"
+                keyboardModifiers.isCtrlPressed -> "CTRL"
+                else -> ""
+            }
+        }
+    )
+}
