@@ -9,7 +9,10 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
@@ -23,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import de.dbaelz.stellar.demo.kkon2021.example.CounterButton
 import de.dbaelz.stellar.demo.kkon2021.example.DeclarativeImperativeExample
+import de.dbaelz.stellar.demo.kkon2021.example.DialogWindowExample
 import de.dbaelz.stellar.feature.presentation.*
 import de.dbaelz.stellar.theme.LatoTypography
 
@@ -31,6 +35,7 @@ private const val PRESENTATION_RESOURCE_DIR = "presentation/kkon2021"
 private const val IMPERATIVE_UI_TITLE = "Imperative UI:"
 private const val DECLARATIVE_UI_TITLE = "Deklarative UI:"
 
+@ExperimentalComposeUiApi
 @Composable
 fun createComposeForDesktopPresentation(): Presentation {
     return Presentation(
@@ -53,8 +58,11 @@ fun createComposeForDesktopPresentation(): Presentation {
 
             { ComposeForDesktopFacts() },
             { ComposeForDesktopIntro() },
-            { ComposeForDesktopCounterButton() },
+            { ComposeForDesktopExampleCounterButton() },
+
+
             { DesktopAPIs() },
+            {ComposeForDesktopExampleWindow()},
 
 
             //{ Demo() },
@@ -233,18 +241,12 @@ private fun ComposeForDesktopIntro() = LeftRightSlide(
         )
     },
     rightContent = {
-        ImageItem(
-            image = painterResource("$PRESENTATION_RESOURCE_DIR/example/counter-button.png"),
-            modifier = Modifier
-                .border(4.dp, MaterialTheme.colors.primary, RoundedCornerShape(16.dp))
-                .padding(2.dp)
-                .clip(RoundedCornerShape(16.dp))
-        )
+        ImageItem(image = painterResource("$PRESENTATION_RESOURCE_DIR/example/counter-button.png"),)
     }
 )
 
 @Composable
-private fun ComposeForDesktopCounterButton() = LeftRightSlide(
+private fun ComposeForDesktopExampleCounterButton() = LeftRightSlide(
     title = "Compose for Desktop: Beispiel",
     footer = { Footer() },
     leftContent = {
@@ -256,13 +258,7 @@ private fun ComposeForDesktopCounterButton() = LeftRightSlide(
         }
     },
     rightContent = {
-        ImageItem(
-            image = painterResource("$PRESENTATION_RESOURCE_DIR/example/counter-button.png"),
-            modifier = Modifier
-                .border(4.dp, MaterialTheme.colors.primary, RoundedCornerShape(16.dp))
-                .padding(2.dp)
-                .clip(RoundedCornerShape(16.dp))
-        )
+        ImageItem(image = painterResource("$PRESENTATION_RESOURCE_DIR/example/counter-button.png"))
     }
 )
 
@@ -271,7 +267,7 @@ private fun DesktopAPIs() = ListSlide(
     title = "Desktop APIs",
     footer = { Footer() },
     items = listOf(
-        "Application und Window",
+        "Window",
         "Maus und Tastatur",
         "Menubar",
         "Scrollbars",
@@ -280,6 +276,26 @@ private fun DesktopAPIs() = ListSlide(
         "...und viele mehr"
     )
 )
+
+
+@ExperimentalComposeUiApi
+@Composable
+private fun ComposeForDesktopExampleWindow() = LeftRightSlide(
+    title = "Compose for Desktop: Beispiel",
+    footer = { Footer() },
+    leftContent = {
+        Box(
+            modifier = Modifier.weight(0.5f).fillMaxHeight(),
+            contentAlignment = Alignment.Center
+        ) {
+            DialogWindowExample()
+        }
+    },
+    rightContent = {
+        ImageItem(image = painterResource("$PRESENTATION_RESOURCE_DIR/example/dialog-window.png"))
+    }
+)
+
 
 @Composable
 private fun Demo() = CaptionSlide(

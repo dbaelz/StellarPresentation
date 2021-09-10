@@ -10,6 +10,7 @@ import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -77,7 +78,10 @@ fun RowScope.ImageItem(
         contentAlignment = Alignment.Center
     ) {
         Image(
-            modifier = modifier,
+            modifier = modifier
+                .border(4.dp, MaterialTheme.colors.primary, RoundedCornerShape(16.dp))
+                .padding(2.dp)
+                .clip(RoundedCornerShape(16.dp)),
             painter = image,
             contentDescription = null,
             contentScale = contentScale
