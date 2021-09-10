@@ -52,7 +52,7 @@ fun CustomCaptionWithAuthorSlide() {
                     contentColor = MaterialTheme.colors.onPrimary,
                     contentModifier = Modifier
                         .fillMaxWidth(0.8f)
-                        .border(4.dp, Color.Gray, RoundedCornerShape(32.dp))
+                        .border(8.dp, Color.DarkGray, RoundedCornerShape(32.dp))
                 )
 
                 Spacer(Modifier.height(32.dp))
@@ -66,9 +66,9 @@ fun CustomCaptionWithAuthorSlide() {
 private fun SpeakerInfo() {
     Row(
         modifier = Modifier
-            .border(4.dp, Color.Gray, RoundedCornerShape(32.dp))
+            .border(4.dp, Color.DarkGray, RoundedCornerShape(32.dp))
             .clip(RoundedCornerShape(32.dp))
-            .background(MaterialTheme.colors.secondaryVariant.copy(alpha = 0.85f))
+            .background(MaterialTheme.colors.secondaryVariant.copy(alpha = 0.9f))
     ) {
         val size = 128.dp
         val rowModifier = Modifier.height(size)
@@ -149,7 +149,7 @@ private fun SpeakerInfo() {
 @Composable
 private fun VerticalDivider(modifier: Modifier = Modifier) {
     Divider(
-        color = Color.Gray,
+        color = Color.DarkGray,
         modifier = modifier.padding(horizontal = 16.dp).width(4.dp)
     )
 }

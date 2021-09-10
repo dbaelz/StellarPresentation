@@ -82,7 +82,7 @@ fun createComposeForDesktopPresentation(): Presentation {
 private fun ComposeForDesktopDefinition() = CaptionSlide(
     title = "„Compose for Desktop bietet einen deklarativen und reaktiven Ansatz zur Erstellung " +
             "von Benutzeroberflächen mit Kotlin”",
-    subtitle = "https://www.jetbrains.com/lp/compose/",
+    subtitle = "https://www.jetbrains.com/de-de/lp/compose/",
     titleTextStyle = defaultCaptionTitleStyle.copy(fontSize = 70.sp, fontStyle = FontStyle.Italic),
     subtitleTextStyle = defaultCaptionTitleStyle.copy(fontSize = 28.sp),
     contentModifier = Modifier
@@ -329,7 +329,9 @@ private fun Resources() = ListSlide(
 @Composable
 private fun Questions() = CaptionSlide(
     title = "Fragen?",
-    contentModifier = Modifier.fillMaxWidth(0.6f),
+    contentModifier = Modifier
+        .fillMaxWidth(0.6f)
+        .border(4.dp, Color.Gray, RoundedCornerShape(32.dp)),
     background = {
         Image(
             painter = painterResource("$PRESENTATION_RESOURCE_DIR/background.png"),
