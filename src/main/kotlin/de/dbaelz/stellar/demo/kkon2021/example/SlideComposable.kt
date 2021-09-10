@@ -1,16 +1,18 @@
 package de.dbaelz.stellar.demo.kkon2021.example
 
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.awt.SwingPanel
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
+import javax.swing.JButton
 
 
 @Composable
@@ -52,5 +54,30 @@ private fun DialogWindow(onClickAndDismiss: () -> Unit) {
             color = MaterialTheme.colors.onBackground,
             modifier = Modifier.fillMaxWidth().padding(8.dp)
         )
+    }
+}
+
+
+@Composable
+fun SwingPanelExample() {
+    var counter by remember { mutableStateOf(0) }
+
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        SwingPanel(
+            background = MaterialTheme.colors.background,
+            modifier = Modifier.width(400.dp).height(50.dp),
+            factory = {
+                return@SwingPanel JButton("Increase counter").apply {
+                    addActionListener { counter++ }
+                }
+            }
+        )
+
+        Spacer(Modifier.height(8.dp))
+
+        Text("Counter: $counter")
     }
 }

@@ -9,13 +9,10 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -24,13 +21,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import de.dbaelz.stellar.demo.kkon2021.example.CounterButton
 import de.dbaelz.stellar.demo.kkon2021.example.DeclarativeImperativeExample
-import de.dbaelz.stellar.demo.kkon2021.example.DialogWindowExample
 import de.dbaelz.stellar.feature.presentation.*
 import de.dbaelz.stellar.theme.LatoTypography
 
-private const val PRESENTATION_RESOURCE_DIR = "presentation/kkon2021"
+internal const val PRESENTATION_RESOURCE_DIR = "presentation/kkon2021"
 
 private const val IMPERATIVE_UI_TITLE = "Imperative UI:"
 private const val DECLARATIVE_UI_TITLE = "Deklarative UI:"
@@ -58,14 +53,16 @@ fun createComposeForDesktopPresentation(): Presentation {
 
             { ComposeForDesktopFacts() },
             { ComposeForDesktopIntro() },
+
+
             { ComposeForDesktopExampleCounterButton() },
-
-
             { DesktopAPIs() },
-            {ComposeForDesktopExampleWindow()},
+            { ComposeForDesktopExampleWindow() },
+            { /* TODO: Mouse and Keyboard */ },
+            { ComposeForDesktopExampleInteropSwing() },
 
 
-            //{ Demo() },
+            //{ GettingStarted() }, TODO: Getting started with info how start?
 
             { Distribution() },
 
@@ -241,66 +238,15 @@ private fun ComposeForDesktopIntro() = LeftRightSlide(
         )
     },
     rightContent = {
-        ImageItem(image = painterResource("$PRESENTATION_RESOURCE_DIR/example/counter-button.png"),)
-    }
-)
-
-@Composable
-private fun ComposeForDesktopExampleCounterButton() = LeftRightSlide(
-    title = "Compose for Desktop: Beispiel",
-    footer = { Footer() },
-    leftContent = {
-        Box(
-            modifier = Modifier.weight(0.5f).fillMaxHeight().scale(2.5f),
-            contentAlignment = Alignment.Center
-        ) {
-            CounterButton()
-        }
-    },
-    rightContent = {
         ImageItem(image = painterResource("$PRESENTATION_RESOURCE_DIR/example/counter-button.png"))
     }
 )
 
+
+/*
 @Composable
-private fun DesktopAPIs() = ListSlide(
-    title = "Desktop APIs",
-    footer = { Footer() },
-    items = listOf(
-        "Window",
-        "Maus und Tastatur",
-        "Menubar",
-        "Scrollbars",
-        "Tooltip",
-        "Swing Interoperabilität",
-        "...und viele mehr"
-    )
-)
-
-
-@ExperimentalComposeUiApi
-@Composable
-private fun ComposeForDesktopExampleWindow() = LeftRightSlide(
-    title = "Compose for Desktop: Beispiel",
-    footer = { Footer() },
-    leftContent = {
-        Box(
-            modifier = Modifier.weight(0.5f).fillMaxHeight(),
-            contentAlignment = Alignment.Center
-        ) {
-            DialogWindowExample()
-        }
-    },
-    rightContent = {
-        ImageItem(image = painterResource("$PRESENTATION_RESOURCE_DIR/example/dialog-window.png"))
-    }
-)
-
-
-@Composable
-private fun Demo() = CaptionSlide(
-    title = "Demo", // TODO: Change title when it's a in-presentation demo
-    //subtitle = "\"Talk is cheap. Show me the code.\" - Linus Torvalds",
+private fun GettingStarted() = CaptionSlide(
+    title = "",
     contentModifier = Modifier
         .fillMaxWidth(0.6f)
         .border(2.dp, Color.Gray, RoundedCornerShape(32.dp)),
@@ -313,6 +259,7 @@ private fun Demo() = CaptionSlide(
         )
     }
 )
+*/
 
 
 // TODO: Fix bullet point (or remove them?)
@@ -387,6 +334,6 @@ private fun Questions() = CaptionSlide(
 )
 
 @Composable
-private fun Footer() {
+internal fun Footer() {
     Divider(thickness = 16.dp, color = MaterialTheme.colors.primary)
 }

@@ -74,7 +74,7 @@ private fun SpeakerInfo() {
         val rowModifier = Modifier.height(size)
 
         Image(
-            painter = painterResource("presentation/kkon2021/avatar.png"),
+            painter = painterResource("$PRESENTATION_RESOURCE_DIR/avatar.png"),
             contentDescription = null,
             contentScale = ContentScale.Fit,
             modifier = rowModifier.size(size)
