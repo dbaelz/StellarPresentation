@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -20,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import de.dbaelz.stellar.demo.kkon2021.example.CounterButton
 import de.dbaelz.stellar.demo.kkon2021.example.DeclarativeImperativeExample
 import de.dbaelz.stellar.feature.presentation.*
 import de.dbaelz.stellar.theme.LatoTypography
@@ -49,12 +51,13 @@ fun createComposeForDesktopPresentation(): Presentation {
             { WhyDeclarative() },
 
 
-            { ComposeForDesktopIntro() },
             { ComposeForDesktopFacts() },
+            { ComposeForDesktopIntro() },
+            { ComposeForDesktopCounterButton() },
             { DesktopAPIs() },
 
 
-            { Demo() },
+            //{ Demo() },
 
             { Distribution() },
 
@@ -194,33 +197,73 @@ private fun WhyDeclarative() = ListSlide(
     title = "$DECLARATIVE_UI_TITLE Vorteile",
     footer = { Footer() },
     items = listOf(
-        "Weniger fehleranfällig und verständlicher",
+        "Verständlicher und weniger fehleranfälliger Code",
         "Vereinfachte Architektur mit unidirektionalem Datenfluss",
-        "Integration und Komposition von Elementen wird gefördert"
+        "Flexible Komposition von UI-Elementen wird gefördert"
     )
 )
 
-// TODO: Something about state handling?
-@Composable
-private fun ComposeForDesktopIntro() = ListSlide(
-    title = "Compose for Desktop",
-    footer = { Footer() },
-    items = listOf(
-        "Deklarative UI",
-        "Definiert im Kotlin Code",
-        "Komposition anstatt Vererbung"
-    )
-)
 
 @Composable
 private fun ComposeForDesktopFacts() = ListSlide(
     title = "Compose for Desktop",
     footer = { Footer() },
     items = listOf(
-        "Ursprung: Jetpack Compose (Android)",
+        "Deklaratives UI Toolkit",
+        "Basierend auf Jetpack Compose (Android)",
+        "Zielplattform: macOS, Windows, Linux",
         "Entwickelt von JetBrains",
         "Aktuell in der Alpha"
     )
+)
+
+@Composable
+private fun ComposeForDesktopIntro() = LeftRightSlide(
+    title = "Compose for Desktop",
+    footer = { Footer() },
+    leftContent = {
+        ContentListItems(
+            itemsArrangement = Arrangement.SpaceEvenly,
+            items = listOf(
+                "Deklarative UI",
+                "UI definiert im Kotlin Code",
+                "Komposition mittels Funktionen",
+                "State Handling"
+            )
+        )
+    },
+    rightContent = {
+        ImageItem(
+            image = painterResource("$PRESENTATION_RESOURCE_DIR/example/counter-button.png"),
+            modifier = Modifier
+                .border(4.dp, MaterialTheme.colors.primary, RoundedCornerShape(16.dp))
+                .padding(2.dp)
+                .clip(RoundedCornerShape(16.dp))
+        )
+    }
+)
+
+@Composable
+private fun ComposeForDesktopCounterButton() = LeftRightSlide(
+    title = "Compose for Desktop: Beispiel",
+    footer = { Footer() },
+    leftContent = {
+        Box(
+            modifier = Modifier.weight(0.5f).fillMaxHeight().scale(2.5f),
+            contentAlignment = Alignment.Center
+        ) {
+            CounterButton()
+        }
+    },
+    rightContent = {
+        ImageItem(
+            image = painterResource("$PRESENTATION_RESOURCE_DIR/example/counter-button.png"),
+            modifier = Modifier
+                .border(4.dp, MaterialTheme.colors.primary, RoundedCornerShape(16.dp))
+                .padding(2.dp)
+                .clip(RoundedCornerShape(16.dp))
+        )
+    }
 )
 
 @Composable

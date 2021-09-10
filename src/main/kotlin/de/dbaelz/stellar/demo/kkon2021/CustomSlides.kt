@@ -5,14 +5,18 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import de.dbaelz.stellar.feature.presentation.CaptionContent
+import de.dbaelz.stellar.feature.presentation.ListItem
 import de.dbaelz.stellar.feature.presentation.TitleSlide
 
 
@@ -44,15 +48,16 @@ fun KeySentenceSlide(
 @Composable
 fun LeftRightSlide(
     title: String,
-    leftContent: @Composable () -> Unit,
-    rightContent: @Composable () -> Unit,
+    leftContent: @Composable RowScope.() -> Unit,
+    rightContent: @Composable RowScope.() -> Unit,
     footer: @Composable () -> Unit
 ) = TitleSlide(
     title = title,
     footer = footer,
     content = {
         Row(
-            modifier = Modifier.fillMaxWidth().fillMaxHeight(0.8f),
+            modifier = Modifier.fillMaxSize(),
+            verticalAlignment = Alignment.Top
         ) {
             leftContent()
 
@@ -62,13 +67,13 @@ fun LeftRightSlide(
 )
 
 @Composable
-fun RowScope.CodeImage(
+fun RowScope.ImageItem(
     image: Painter,
     contentScale: ContentScale = ContentScale.Fit,
     modifier: Modifier = Modifier,
 ) {
     Box(
-        modifier = Modifier.weight(0.5f),
+        modifier = Modifier.weight(0.5f).fillMaxHeight(),
         contentAlignment = Alignment.Center
     ) {
         Image(
@@ -81,14 +86,22 @@ fun RowScope.CodeImage(
 }
 
 @Composable
-fun RowScope.CodeContent(
+fun RowScope.ContentListItems(
     modifier: Modifier = Modifier,
-    content: @Composable () -> Unit
+    bulletPoint: ImageVector? = Icons.Default.KeyboardArrowRight,
+    itemsBackgroundColor: Color = MaterialTheme.colors.secondary.copy(alpha = 0.8f),
+    itemsContentColor: Color = MaterialTheme.colors.onSecondary,
+    itemsArrangement: Arrangement.Vertical = Arrangement.Top,
+    items: List<String>
 ) {
-    Box(
-        modifier = Modifier.weight(0.5f),
-        contentAlignment = Alignment.Center
+    Column(
+        modifier = modifier.fillMaxHeight().weight(0.5f),
+        verticalArrangement = itemsArrangement
     ) {
-        content()
+        items.forEach { text ->
+            ListItem(text, bulletPoint, true, itemsBackgroundColor, itemsContentColor)
+
+            Spacer(modifier = Modifier.height(16.dp))
+        }
     }
 }
