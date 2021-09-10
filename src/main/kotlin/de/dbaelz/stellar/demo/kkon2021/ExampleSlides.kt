@@ -91,7 +91,7 @@ internal fun ComposeForDesktopExampleMouseKeyboard() = LeftRightSlide(
         ) {
             BoxWithTooltip(
                 modifier = Modifier
-                    .fillMaxWidth(0.9f)
+                    .fillMaxWidth(0.6f)
                     .padding(8.dp)
                     .border(4.dp, MaterialTheme.colors.primary, RoundedCornerShape(16.dp))
                     .padding(8.dp)

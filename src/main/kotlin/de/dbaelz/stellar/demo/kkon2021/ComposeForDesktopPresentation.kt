@@ -24,6 +24,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import de.dbaelz.stellar.demo.kkon2021.example.DeclarativeImperativeExample
+import de.dbaelz.stellar.demo.kkon2021.example.SwingPanelExample
 import de.dbaelz.stellar.feature.presentation.*
 import de.dbaelz.stellar.theme.LatoTypography
 
@@ -207,7 +208,7 @@ private fun WhyDeclarative() = ListSlide(
     footer = { Footer() },
     items = listOf(
         "Verständlicher und weniger fehleranfälliger Code",
-        "Vereinfachte Architektur mit unidirektionalem Datenfluss",
+        "Klare Architektur mit unidirektionalem Datenfluss",
         "Flexible Komposition von UI-Elementen wird gefördert"
     )
 )
@@ -266,37 +267,39 @@ private fun GettingStarted() = CaptionSlide(
 */
 
 
-// TODO: Fix bullet point (or remove them?)
 @Composable
-private fun Distribution() = ListSlide(
+private fun Distribution() = LeftRightSlide(
     title = "Compose for Desktop: Distribution",
     footer = { Footer() },
-    items = listOf(
-        "Konfigurierbares Gradle Plugin",
-        "Java Runtime wird mit ausgeliefert",
-        "Formate:\n" +
-                "    • macOS: dmg & pkg\n" +
-                "    • Windows: exe & msi\n" +
-                "    • Linux: deb & rpm"
-
-
-    )
+    leftContent = {
+        ContentListItems(
+            itemsArrangement = Arrangement.SpaceEvenly,
+            items = listOf(
+                "Gradle Plugin",
+                "Java Runtime inkludiert",
+                "macOS: dmg und pkg",
+                "Windows: exe und msi",
+                "Linux: deb und rpm"
+            )
+        )
+    },
+    rightContent = {
+        ImageItem(image = painterResource("$PRESENTATION_RESOURCE_DIR/example/gradle-plugin.png"))
+    }
 )
 
-// TODO: Expand and revise.
-//  Ecosystem and libraries
-//  Multiplatform & Web
 @Composable
 private fun Outlook() = ListSlide(
     title = "Compose for Desktop: Ausblick",
     footer = { Footer() },
     items = listOf(
-        ""
-        // TODO: Bullet Points
+        "Bibliotheken: Decompose, Aurora Framework, Moko Resources, ...",
+        "Compose Multiplatform: Desktop und Web",
+        "Intensives Arbeiten an der Performance und Stabilität",
+        "Technische Unterbau wird weiter verbessert, z.B. Skiko statt Skija"
     )
 )
 
-// TODO: Expand and revise
 @Composable
 private fun Conclusion() = ListSlide(
     title = "Compose for Desktop: Fazit",
@@ -304,12 +307,12 @@ private fun Conclusion() = ListSlide(
     items = listOf(
         "Bietet bereits viele Möglichkeiten",
         "Hat noch Bugs und fehlende Feature",
-        "Ökosystem wächst langsam, auch durch Jetpack Compose",
+        "Ökosystem wächst stetig",
+        "Jetpack Compose treibt das Thema weiter an",
         "Mein Tipp: Einfach ausprobieren"
     )
 )
 
-// TODO: Expand and revise
 @Composable
 private fun Resources() = ListSlide(
     title = "Compose for Desktop: Ressourcen",
