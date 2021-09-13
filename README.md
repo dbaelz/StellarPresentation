@@ -63,5 +63,6 @@ the [SIL Open Font License, Version 1.1](license/Lato/OFL.txt)
 the [SIL Open Font License, Version 1.1](license/Caveat/OFL.txt)
 - [IndieFlower font](src/main/resources/fonts/indieflower) is licensed under
 the [SIL Open Font License, Version 1.1](license/IndieFlower/OFL.txt)
+<<<<<<< HEAD
 - [Markazi Text font](src/main/resources/fonts/markazitext) is licensed under
 the [SIL Open Font License, Version 1.1](license/MarkaziText/OFL.txt)
