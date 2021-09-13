@@ -66,8 +66,7 @@ fun createComposeForDesktopPresentation(): Presentation {
             { ComposeForDesktopExampleInteropSwing() },
 
 
-            //{ GettingStarted() }, TODO: Getting started with info how start?
-
+            { GettingStarted() },
             { Distribution() },
 
             { Outlook() },
@@ -209,7 +208,7 @@ private fun WhyDeclarative() = ListSlide(
     items = listOf(
         "Verständlicher und weniger fehleranfälliger Code",
         "Klare Architektur mit unidirektionalem Datenfluss",
-        "Flexible Komposition von UI-Elementen wird gefördert"
+        "Flexible Komposition von UI-Elementen"
     )
 )
 
@@ -220,8 +219,8 @@ private fun ComposeForDesktopFacts() = ListSlide(
     footer = { Footer() },
     items = listOf(
         "Deklaratives UI Toolkit",
-        "Basierend auf Jetpack Compose (Android)",
-        "Zielplattform: macOS, Windows, Linux",
+        "Zielplattformen: macOS, Windows, Linux",
+        "Basiert auf Jetpack Compose (Android)",
         "Entwickelt von JetBrains",
         "Aktuell in der Alpha"
     )
@@ -235,7 +234,6 @@ private fun ComposeForDesktopIntro() = LeftRightSlide(
         ContentListItems(
             itemsArrangement = Arrangement.SpaceEvenly,
             items = listOf(
-                "Deklarative UI",
                 "UI definiert im Kotlin Code",
                 "Komposition mittels Funktionen",
                 "State Handling"
@@ -247,24 +245,24 @@ private fun ComposeForDesktopIntro() = LeftRightSlide(
     }
 )
 
-
-/*
 @Composable
-private fun GettingStarted() = CaptionSlide(
-    title = "",
-    contentModifier = Modifier
-        .fillMaxWidth(0.6f)
-        .border(2.dp, Color.Gray, RoundedCornerShape(32.dp)),
-    background = {
-        Image(
-            painter = painterResource("$PRESENTATION_RESOURCE_DIR/background.png"),
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier.fillMaxSize()
+private fun GettingStarted() = LeftRightSlide(
+    title = "Compose for Desktop: Ausprobieren",
+    footer = { Footer() },
+    leftContent = {
+        ContentListItems(
+            itemsArrangement = Arrangement.SpaceEvenly,
+            items = listOf(
+                "Am einfachsten: IntelliJ IDEA Wizard",
+                "Tutorials und Doku anschauen",
+                "Ausprobieren und Experimentieren"
+            )
         )
+    },
+    rightContent = {
+        ImageItem(image = painterResource("$PRESENTATION_RESOURCE_DIR/example/getting-started.png"))
     }
 )
-*/
 
 
 @Composable
@@ -309,7 +307,6 @@ private fun Conclusion() = ListSlide(
         "Hat noch Bugs und fehlende Feature",
         "Ökosystem wächst stetig",
         "Jetpack Compose treibt das Thema weiter an",
-        "Mein Tipp: Einfach ausprobieren"
     )
 )
 
