@@ -18,13 +18,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import de.dbaelz.stellar.feature.presentation.CaptionContent
 import de.dbaelz.stellar.feature.presentation.CaptionSlide
-import de.dbaelz.stellar.theme.Caveat
+import de.dbaelz.stellar.theme.*
 
 
 @Composable
@@ -85,10 +86,10 @@ private fun SpeakerInfo() {
 
         CompositionLocalProvider(
             LocalTextStyle provides MaterialTheme.typography.h4.copy(
-                fontSize = 40.sp,
+                fontSize = 36.sp,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,
-                fontFamily = Caveat
+                fontFamily = MarkaziText,
             )
         ) {
 
@@ -120,15 +121,9 @@ private fun SpeakerInfo() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                Text(
-                    text = "Twitter/GitHub/Dev.to"
-                )
+                Text(text = "Twitter/GitHub/Dev.to")
 
-                Spacer(Modifier.height(8.dp))
-
-                Text(
-                    text = "@dbaelz",
-                )
+                Text(text = "@dbaelz")
             }
 
             VerticalDivider(rowModifier)
