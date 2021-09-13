@@ -4,10 +4,7 @@ import androidx.compose.foundation.BoxWithTooltip
 import androidx.compose.foundation.ExperimentalDesktopApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -19,10 +16,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import de.dbaelz.stellar.demo.kkon2021.example.CounterButton
-import de.dbaelz.stellar.demo.kkon2021.example.DialogWindowExample
-import de.dbaelz.stellar.demo.kkon2021.example.MouseClickableExample
-import de.dbaelz.stellar.demo.kkon2021.example.SwingPanelExample
+import de.dbaelz.stellar.demo.kkon2021.example.*
 import de.dbaelz.stellar.feature.presentation.ListSlide
 
 
@@ -40,6 +34,24 @@ internal fun ComposeForDesktopExampleCounterButton() = LeftRightSlide(
     },
     rightContent = {
         ImageItem(image = painterResource("$PRESENTATION_RESOURCE_DIR/example/counter-button.png"))
+    }
+)
+
+@Composable
+internal fun ComposeForDesktopExampleExpanded() = LeftRightSlide(
+    title = "Compose for Desktop: Beispiel",
+    footer = { Footer() },
+    leftContent = {
+        Column(
+            modifier = Modifier.weight(0.5f).fillMaxHeight(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            IconTextCounterButton()
+        }
+    },
+    rightContent = {
+        ImageItem(image = painterResource("$PRESENTATION_RESOURCE_DIR/example/counter-button-expanded.png"))
     }
 )
 

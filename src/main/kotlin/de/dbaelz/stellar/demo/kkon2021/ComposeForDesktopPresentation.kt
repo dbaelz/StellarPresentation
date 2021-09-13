@@ -60,6 +60,8 @@ fun createComposeForDesktopPresentation(): Presentation {
 
 
             { ComposeForDesktopExampleCounterButton() },
+            { ComposeForDesktopExampleExpanded() },
+
             { DesktopAPIs() },
             { ComposeForDesktopExampleWindow() },
             { ComposeForDesktopExampleMouseKeyboard() },
@@ -294,7 +296,7 @@ private fun Outlook() = ListSlide(
         "Bibliotheken: Decompose, Aurora Framework, Moko Resources, ...",
         "Compose Multiplatform: Desktop und Web",
         "Intensives Arbeiten an der Performance und Stabilität",
-        "Technische Unterbau wird weiter verbessert, z.B. Skiko statt Skija"
+        "Technische Unterbau wird weiter verbessert"
     )
 )
 

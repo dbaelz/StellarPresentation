@@ -4,8 +4,11 @@ import androidx.compose.foundation.ExperimentalDesktopApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.mouseClickable
 import androidx.compose.material.Button
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -14,6 +17,7 @@ import androidx.compose.ui.awt.SwingPanel
 import androidx.compose.ui.input.pointer.*
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import javax.swing.JButton
 
@@ -26,6 +30,39 @@ fun CounterButton() {
         Text("Counter: $counter")
     }
 }
+
+@Composable
+fun IconTextCounterButton() {
+    var counter by remember { mutableStateOf(0) }
+
+    CustomButton(modifier = Modifier.size(150.dp), onClick = { counter++ }) {
+        Row(
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(Icons.Default.AddCircle, null, Modifier.size(48.dp))
+
+            Spacer(Modifier.width(16.dp))
+
+            Text(
+                text = "$counter", fontSize = 40.sp,
+                modifier = Modifier.align(Alignment.CenterVertically)
+            )
+        }
+    }
+}
+
+@Composable
+fun CustomButton(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit,
+    content: @Composable () -> Unit
+) {
+    Button(onClick = onClick, modifier = modifier) {
+        content()
+    }
+}
+
 
 @ExperimentalComposeUiApi
 @Composable
