@@ -18,21 +18,20 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import de.dbaelz.stellar.feature.presentation.CaptionContent
 import de.dbaelz.stellar.feature.presentation.CaptionSlide
-import de.dbaelz.stellar.theme.*
+import de.dbaelz.stellar.theme.MarkaziText
 
 
 @Composable
 fun CustomCaptionWithAuthorSlide() {
     CaptionSlide(
         modifier = Modifier.fillMaxSize(),
-        footer = {}, // TODO: Footer with conference and date?
+        footer = {},
         content = {
             Image(
                 painter = painterResource("images/compose-desktop-logo.png"),
@@ -132,7 +131,6 @@ private fun SpeakerInfo() {
                 contentAlignment = Alignment.Center,
                 modifier = rowModifier.padding(end = 24.dp)
             ) {
-
                 Text(
                     text = "https://dbaelz.de"
                 )

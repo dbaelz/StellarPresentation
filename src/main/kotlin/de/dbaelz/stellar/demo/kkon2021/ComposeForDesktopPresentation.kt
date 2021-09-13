@@ -60,10 +60,10 @@ fun createComposeForDesktopPresentation(): Presentation {
 
 
             { ComposeForDesktopExampleCounterButton() },
-            { ComposeForDesktopExampleExpanded() },
+            // { ComposeForDesktopExampleExpanded() }, // TODO: Comment out, because the talk is already to long
 
             { DesktopAPIs() },
-            { ComposeForDesktopExampleWindow() },
+            // { ComposeForDesktopExampleWindow() }, // TODO: Comment out, because the talk is already to long
             { ComposeForDesktopExampleMouseKeyboard() },
             { ComposeForDesktopExampleInteropSwing() },
 
@@ -208,9 +208,9 @@ private fun WhyDeclarative() = ListSlide(
     title = "$DECLARATIVE_UI_TITLE Vorteile",
     footer = { Footer() },
     items = listOf(
-        "Verständlicher und weniger fehleranfälliger Code",
-        "Klare Architektur mit unidirektionalem Datenfluss",
-        "Flexible Komposition von UI-Elementen"
+        "Code lesbarer und weniger fehleranfällig",
+        "Unidirektionaler Datenfluss fördert eine klare Architektur",
+        "Komposition fördert die Wiederverwendung von UI-Elementen"
     )
 )
 
@@ -236,9 +236,9 @@ private fun ComposeForDesktopIntro() = LeftRightSlide(
         ContentListItems(
             itemsArrangement = Arrangement.SpaceEvenly,
             items = listOf(
-                "UI definiert im Kotlin Code",
-                "Komposition mittels Funktionen",
-                "State Handling"
+                "Kotlin Code",
+                "Komposition von Funktionen",
+                "State Handling für die UI"
             )
         )
     },
@@ -256,8 +256,8 @@ private fun GettingStarted() = LeftRightSlide(
             itemsArrangement = Arrangement.SpaceEvenly,
             items = listOf(
                 "Am einfachsten: IntelliJ IDEA Wizard",
-                "Tutorials und Doku anschauen",
-                "Ausprobieren und Experimentieren"
+                "Tutorials zum Einstieg",
+                "Mein Tipp: Einfach ausprobieren"
             )
         )
     },
@@ -295,8 +295,9 @@ private fun Outlook() = ListSlide(
     items = listOf(
         "Bibliotheken: Decompose, Aurora Framework, Moko Resources, ...",
         "Compose Multiplatform: Desktop und Web",
-        "Intensives Arbeiten an der Performance und Stabilität",
-        "Technische Unterbau wird weiter verbessert"
+        "Features werden stückweise hinzugefügt",
+        "Stetige Verbesserung der Performance und Stabilität",
+        "Noch kein Termin für 1.0 Release angekündigt"
     )
 )
 
@@ -306,9 +307,9 @@ private fun Conclusion() = ListSlide(
     footer = { Footer() },
     items = listOf(
         "Bietet bereits viele Möglichkeiten",
-        "Hat noch Bugs und fehlende Feature",
+        "Hat noch Bugs und fehlende Features",
         "Ökosystem wächst stetig",
-        "Jetpack Compose treibt das Thema weiter an",
+        "Synergie mit Jetpack Compose",
     )
 )
 
