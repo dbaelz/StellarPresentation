@@ -1,8 +1,32 @@
 # About
-Stellar Presentation is a simple presentation application for the desktop.
-It's developed with [Compose for Desktop](https://github.com/JetBrains/compose-jb) and still work
-in progress.
+Stellar Presentation is a basic presentation application for the desktop.
+It's developed with [Compose for Desktop](https://github.com/JetBrains/compose-jb) and was initially 
+created for my [talk at KKON 2021](https://rheinwerk-kkon.de/programm/).
 
+The app already has some useful features:
+- Navigation between slides with left/right arrows and home/end keys
+- Supports fullscreen (F11). Right now with a hardcoded resolution
+- Template slides that make it easy to create basic presentations
+- A presentation can define the typography to use
+
+# How to use Stellar Presentation
+The easiest way is to create your own presentation in a presentation-specific branch.
+Also, the [sample presentation](de/dbaelz/stellar/demo/DemoPresentation.kt) and
+my extensive [presentation about Compose for Desktop](https://github.com/dbaelz/StellarPresentation/tree/presentation/KKON2021-ComposeForDesktop/src/main/kotlin/de/dbaelz/stellar/demo/kkon2021)
+showcase how to create presentations with the app.
+
+# TODOs and improvement ideas
+There are several todos and improvement ideas for Stellar Presentation. For example:
+- Adjust/scale the slides when the presentation isn't in full screen
+- Window size as command-line argument
+- More default/template slides
+- Export of the presentation as PDF (with screenshots)
+- Extract presentations from src/main (into a Gradle module?)
+- Logo for Stellar Presentation (see source code TODOs)
+
+
+# Contribution
+Feel free to use the presentation app and to contribute to it via pull requests.
 
 # License
 Copyright (c) Daniel Bälz

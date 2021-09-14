@@ -24,8 +24,6 @@ import de.dbaelz.stellar.feature.presentation.ListSlide
 import de.dbaelz.stellar.feature.presentation.Presentation
 import de.dbaelz.stellar.theme.IndieFlowerTypography
 
-// TODO: Move this into a Gradle module for better separation
-//  of Stellar and the actual presentations
 @Composable
 fun createDemoPresentation(): Presentation {
     return Presentation(
