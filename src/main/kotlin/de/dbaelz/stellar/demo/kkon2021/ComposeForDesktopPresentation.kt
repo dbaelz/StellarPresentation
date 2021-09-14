@@ -60,10 +60,10 @@ fun createComposeForDesktopPresentation(): Presentation {
 
 
             { ComposeForDesktopExampleCounterButton() },
-            // { ComposeForDesktopExampleExpanded() }, // TODO: Comment out, because the talk is already to long
+            { ComposeForDesktopExampleExpanded() },
 
             { DesktopAPIs() },
-            // { ComposeForDesktopExampleWindow() }, // TODO: Comment out, because the talk is already to long
+            { ComposeForDesktopExampleWindow() },
             { ComposeForDesktopExampleMouseKeyboard() },
             { ComposeForDesktopExampleInteropSwing() },
 
