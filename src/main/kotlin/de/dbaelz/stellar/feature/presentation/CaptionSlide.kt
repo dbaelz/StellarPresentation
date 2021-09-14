@@ -102,7 +102,7 @@ val defaultCaptionTitleStyle: TextStyle
         return LocalTextStyle.current.copy(
             fontWeight = FontWeight.Medium,
             textAlign = TextAlign.Center,
-            fontSize = 128.sp
+            fontSize = 140.sp
         )
     }
 

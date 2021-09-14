@@ -72,15 +72,15 @@ fun ListSlide(
 @Composable
 fun ListItem(
     text: String,
-    bulletPoint: ImageVector?,
+    bulletPoint: ImageVector? = Icons.Default.KeyboardArrowRight,
     withBorder: Boolean = true,
-    itemsBackgroundColor: Color,
-    itemsContentColor: Color
+    backgroundColor: Color = MaterialTheme.colors.secondary.copy(alpha = 0.8f),
+    contentColor: Color = MaterialTheme.colors.onSecondary,
 ) {
     Surface(
         shape = RoundedCornerShape(16.dp),
-        color = itemsBackgroundColor,
-        contentColor = itemsContentColor,
+        color = backgroundColor,
+        contentColor = contentColor,
         modifier = Modifier
             .wrapContentSize()
             .then(
@@ -95,7 +95,7 @@ fun ListItem(
                 Icon(
                     imageVector = bulletPoint,
                     contentDescription = null,
-                    tint = itemsContentColor,
+                    tint = contentColor,
                     modifier = Modifier.size(40.dp).align(Alignment.CenterVertically)
                 )
             }
