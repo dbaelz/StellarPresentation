@@ -15,10 +15,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import de.dbaelz.stellar.feature.presentation.Presentation
 import de.dbaelz.stellar.theme.IndieFlower
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MainScreen(
     presentations: List<Presentation> = emptyList(),
@@ -64,17 +66,21 @@ fun MainScreen(
             presentations.forEach { presentation ->
                 Divider(thickness = 2.dp, color = MaterialTheme.colors.primaryVariant)
 
-                BoxWithTooltip(tooltip = {
-                    Text(
-                        text = presentation.description,
-                        style = MaterialTheme.typography.h5,
-                        color = MaterialTheme.colors.onSecondary,
-                        modifier = Modifier
-                            .clip(RoundedCornerShape(16.dp))
-                            .background(MaterialTheme.colors.secondary)
-                            .padding(8.dp)
+                TooltipArea(
+                    tooltip = {
+                        Text(
+                            text = presentation.description,
+                            style = MaterialTheme.typography.h5,
+                            color = MaterialTheme.colors.onSecondary,
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(16.dp))
+                                .background(MaterialTheme.colors.secondary)
+                                .padding(8.dp)
+                        )
+                    }, tooltipPlacement = TooltipPlacement.CursorPoint(
+                        offset = DpOffset(0.dp, 16.dp)
                     )
-                }) {
+                ) {
                     Row(
                         Modifier.fillMaxWidth()
                             .clickable {
