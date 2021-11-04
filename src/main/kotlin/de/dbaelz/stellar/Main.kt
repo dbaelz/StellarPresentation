@@ -6,7 +6,6 @@ import androidx.compose.ui.window.application
 import de.dbaelz.stellar.demo.createDemoPresentation
 import de.dbaelz.stellar.screen.StellarPresentationWindow
 
-@ExperimentalComposeUiApi
 fun main() = application {
     val presentations = listOf(
         createDemoPresentation(),

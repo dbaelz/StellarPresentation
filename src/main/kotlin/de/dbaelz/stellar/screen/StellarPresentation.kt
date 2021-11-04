@@ -20,7 +20,7 @@ import de.dbaelz.stellar.feature.presentation.Presentation
 import de.dbaelz.stellar.theme.LatoTypography
 import de.dbaelz.stellar.theme.StellarPresentationTheme
 
-@ExperimentalComposeUiApi
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun StellarPresentationWindow(
     width: Dp,
