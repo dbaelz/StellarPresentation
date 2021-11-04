@@ -11,6 +11,7 @@ import androidx.compose.ui.input.key.key
 import androidx.compose.ui.input.key.type
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPlacement
 import androidx.compose.ui.window.WindowSize
@@ -27,7 +28,7 @@ fun StellarPresentationWindow(
     presentations: List<Presentation>,
     onCloseRequest: () -> Unit
 ) {
-    val defaultWindowSize = WindowSize(width, height)
+    val defaultWindowSize = DpSize(width, height)
     val windowState = rememberWindowState(
         placement = WindowPlacement.Floating,
         size = defaultWindowSize
